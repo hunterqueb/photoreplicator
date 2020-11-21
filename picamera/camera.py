@@ -13,6 +13,6 @@ camera.rotation = 180
 camera.start_preview(alpha=200)
 sleep(1)
 for i in range(2):
-    camera.capture('/home/pi/Desktop/photoreplicator/picamera/photos/image%s.jpg' % str(i+1))
+    camera.capture('filePath' + '/photos/image%s.jpg' % str(i+1))
     camera.resolution = (2592, 1944)
 camera.stop_preview()
