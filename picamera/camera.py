@@ -1,6 +1,10 @@
 from time import sleep
 from picamera import PiCamera
+import os
 
+
+filePath = os.path.dirname(os.path.abspath(__file__))
+print(filePath)
 # initialize the camera object
 camera = PiCamera()
 camera.resolution = (1920, 1080) # max res is 2592x1944 for still images, 1920x1080 for vidoes.
