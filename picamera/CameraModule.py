@@ -1,6 +1,5 @@
 from time import sleep
 import os
-
 from picamera import PiCamera
 
 class CameraModule: # custom camera module class 
@@ -60,17 +59,3 @@ class CameraModule: # custom camera module class
         self.camera.wait_recording(time)
         self.camera.stop_recording()
         self.videoCount = self.videoCount + 1
-
-width = 1920
-height = 1080
-framerate = 24
-rotation = 180
-vidLength = 6
-
-CAM = CameraModule(width,height,framerate,rotation)
-
-CAM.takePic()
-CAM.takePic()
-
-CAM.recordVid(vidLength)
-CAM.recordVid(vidLength)
