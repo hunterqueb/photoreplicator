@@ -32,7 +32,7 @@ class CameraModule: # custom camera module class
         
         # try to generate file paths for folder that will hold the videos, if the files already exist, catch error and tell user the path already exists
         try:
-            os.mkdir(self.photosPath)
+            os.mkdir(self.videosPath)
         except OSError:
             print(
                 "Creation of the directory %s failed: This directory must already exist." % self.videosPath)
@@ -65,7 +65,7 @@ width = 1920
 height = 1080
 framerate = 24
 rotation = 180
-vidLength = 1
+vidLength = 6
 
 CAM = CameraModule(width,height,framerate,rotation)
 
