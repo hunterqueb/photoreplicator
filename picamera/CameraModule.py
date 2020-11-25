@@ -46,6 +46,7 @@ class CameraModule: # custom camera module class
 
         _, _, videoFiles = next(os.walk(self.videosPath))
         self.videoCount = len(videoFiles)
+        return
 
     def takePic(self): # take a picture
         self.camera.start_preview(alpha=200)
@@ -53,9 +54,23 @@ class CameraModule: # custom camera module class
         sleep(1)
         self.camera.stop_preview()
         self.photoCount = self.photoCount + 1
+        return
 
     def recordVid(self, time): # take a video
         self.camera.start_recording(self.videosPath + "video%s.h264" % str(self.videoCount))
         self.camera.wait_recording(time)
         self.camera.stop_recording()
         self.videoCount = self.videoCount + 1
+        return
+
+    def setResolution(self,res):
+        self.camera.resolution = res
+        return
+
+    def setFramerate(self, frames):
+        self.camera.framerate = frames
+        return
+
+    def setRotation(self, rot):
+        self.camera.rotation = rot
+        return
