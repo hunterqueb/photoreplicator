@@ -7,7 +7,13 @@ from matplotlib import pyplot
 figure = pyplot.figure()
 axes = mplot3d.Axes3D(figure)
 
-myMesh = mesh.Mesh.from_file("removable_storage/cylinder.STL")
+myMesh = mesh.Mesh.from_file("stl-voxel/cylinder.STL")
+
+# myMesh is of the data type 
+# dtype = dtype([('normals', '<f4', (3,)), ('vectors', '<f4', (3, 3)), ('attr', '<u2', (1,))])
+# normals: numpy.float32(), (3, )
+# vectors: numpy.float32(), (3, 3)
+# attr: numpy.uint16(), (1, )
 
 axes.add_collection3d(mplot3d.art3d.Poly3DCollection(myMesh.vectors))
 
