@@ -1,11 +1,13 @@
 import pyglet
 from pyglet import shapes
-from wavelengthToRGB import wavelengthToRGB
+
+from libraries.wavelengthToRGB.wavelengthToRGB import wavelengthToRGB
 
 # to be gdone for this project
 # need to get find how to update picture of foreground object with refresh rate of monitor
 # need to write a function to flip the geometry of whatever is being displayed
 # need to write a funciton that generates object picturewith depth
+# figure out the relative imports
 
 # get the displays and screen information
 displays = pyglet.canvas.get_display()

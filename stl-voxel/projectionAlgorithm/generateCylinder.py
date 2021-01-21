@@ -2,7 +2,7 @@ import time
 import math
 
 import pygame
-from wavelengthToRGB.wavelengthToRGB import wavelengthToRGB
+from libraries.wavelengthToRGB.wavelengthToRGB import wavelengthToRGB
 
 def generateCylinder():
     gamma = 1
