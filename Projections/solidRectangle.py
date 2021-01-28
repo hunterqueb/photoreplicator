@@ -1,4 +1,5 @@
 import pyglet
+from pyglet.window import key
 from pyglet import shapes
 
 from libraries.wavelengthToRGB.wavelengthToRGB import wavelengthToRGB
@@ -33,21 +34,23 @@ batch = pyglet.graphics.Batch()
 gamma = 1
 #colors in wavelengths in nanometers
 backgroundWavelength = 580  # yellow
-foregroundWavelength = 460  # blue
+foregroundWavelength = 400  # purple
 
 # create variables that store the value of where the shapes should be drawn
 background = shapes.Rectangle(
     0, 0, screens[0].width, screens[0].height, color=wavelengthToRGB(backgroundWavelength, gamma),batch=batch)
 
 foregroundObject = shapes.Rectangle(
-    screens[0].width//3, screens[0].height//3, screens[0].width//3, screens[0].height//3, color=wavelengthToRGB(foregroundWavelength, gamma), batch=batch)
-
+    0.5*(screens[0].width-screens[0].height//3), 0.5*(screens[0].height-screens[0].width//3), screens[0].height//3, screens[0].width//3, color=wavelengthToRGB(foregroundWavelength, gamma), batch=batch)
+# foregroundObject.anchor_x = foregroundObject.width//2
+# foregroundObject.anchor_x = foregroundObject.height//2
 
 # create event handlers that update with drawing the batch, im not sure how often this occurs
 @window1.event
 def on_draw():
     window1.clear()
     batch.draw()
+    
 
 @window2.event
 def on_draw():
@@ -56,11 +59,12 @@ def on_draw():
 
 @window1.event
 def on_key_press(symbol, modifiers):
-    pyglet.app.exit()
+    if symbol == key.ENTER or symbol == key.ESCAPE:
+        pyglet.app.exit()
 
 # set visible after all initialization
 window1.set_visible()
-window2.set_visible()
+# window2.set_visible()
 
 # run the app
 pyglet.app.run()
