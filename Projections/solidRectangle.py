@@ -15,8 +15,8 @@ displays = pyglet.canvas.get_display()
 screens = displays.get_screens()
 
 # instance the window object for each display
-window1 = pyglet.window.Window(
-    fullscreen=True, screen=screens[0], visible=False)
+window1 = pyglet.window.Window(1920,1080,
+    fullscreen=False, screen=screens[1], visible=True)
 #window2 = pyglet.window.Window(
 #    fullscreen=True, screen=screens[1], visible=False)
 
@@ -34,14 +34,14 @@ batch = pyglet.graphics.Batch()
 gamma = 1
 #colors in wavelengths in nanometers
 backgroundWavelength = 580  # yellow
-foregroundWavelength = 400  # purple
+foregroundWavelength = 405  # purple
 
 # create variables that store the value of where the shapes should be drawn
 background = shapes.Rectangle(
-    0, 0, screens[0].width, screens[0].height, color=wavelengthToRGB(backgroundWavelength, gamma),batch=batch)
+    0, 0, screens[1].width, screens[1].height, color=wavelengthToRGB(backgroundWavelength, gamma),batch=batch)
 
 foregroundObject = shapes.Rectangle(
-    0.5*(screens[0].width-screens[0].height//3), 0.5*(screens[0].height-screens[0].width//3), screens[0].height//3, screens[0].width//3, color=wavelengthToRGB(foregroundWavelength, gamma), batch=batch)
+    0.5*(screens[1].width-screens[1].height//3), 0.5*(screens[1].height-screens[1].width//3), screens[1].height//6, screens[1].width//6, color=wavelengthToRGB(foregroundWavelength, gamma), batch=batch)
 # foregroundObject.anchor_x = foregroundObject.width//2
 # foregroundObject.anchor_x = foregroundObject.height//2
 

@@ -7,7 +7,7 @@ rotation = 180
 
 CAM = CameraModule(width, height, framerate, rotation)
 
-# CAM.takePic()
+CAM.takePic()
 # CAM.takePic()
 
 # vidLength = 6
