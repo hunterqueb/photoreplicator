@@ -24,17 +24,23 @@ DIR = 11
 
 # OPTO and ENA pins are not needed for this application
 
-GPIO.setup(DIR, GPIO.out)
+GPIO.setup(DIR, GPIO.OUT)
+GPIO.setup(PUL,GPIO.OUT)
 pwmPin = GPIO.PWM(PUL, 133333) # 2nd arg. pulse width in hz, minimum for our driver is 7.5 microseconds or 1/(7.5 microsec)
 pwmPin.start(0)  # start the pwm at 0
 
 SPR = 400 # value dependent on the switches on the outside of the driver
 
+print("half speed\n")
 pwmPin.ChangeDutyCycle(50) # half power - this value has a range of 0 to 100 to determine the speed of the motor
 time.sleep(5) 
+print("full speed\n")
 pwmPin.ChangeDutyCycle(100)
 time.sleep(5)
-pwmPin.ChangeDutyCycle(20)
+print("quarter speed\n")
+pwmPin.ChangeDutyCycle(25)
 time.sleep(5)
+pwmPin.ChangeDutyCycle(0)
+print("done! turning off")
 
 GPIO.cleanup()
