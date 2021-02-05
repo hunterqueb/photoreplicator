@@ -4,9 +4,6 @@ from pyglet import shapes
 
 from libraries.wavelengthToRGB.wavelengthToRGB import wavelengthToRGB
 
-
-
-
 # to be gdone for this project
 # need to get find how to update picture of foreground object with refresh rate of monitor
 # need to write a function to flip the geometry of whatever is being displayed
@@ -32,8 +29,7 @@ window1 = pyglet.window.Window(1920,1080,
 
 # create a batch of shapes the program draws
 batch = pyglet.graphics.Batch()
-batch1 =  pyglet.graphics.Batch()
-batch2 = pyglet.graphics.Batch()
+
 # initialize the wavelengths for colors to be used by the wavelength to RGB function
 gamma = 1
 #colors in wavelengths in nanometers
@@ -44,23 +40,16 @@ foregroundWavelength = 405  # purple
 background = shapes.Rectangle(
     0, 0, screens[1].width, screens[1].height, color=wavelengthToRGB(backgroundWavelength, gamma),batch=batch)
 
-foregroundObject = shapes.Rectangle(
-    0.5*(screens[1].width-screens[1].height//3), 0.5*(screens[1].height-screens[1].width//3), screens[1].height//6, screens[1].width, color=wavelengthToRGB(foregroundWavelength, gamma), batch=batch)
-
-purpleBackground = shapes.Rectangle(0,0,screens[1].width, screens[1].height, color=wavelengthToRGB(foregroundWavelength,gamma), batch = batch1)
-
-yellowBackground = shapes.Rectangle(0,0,screens[1].width,screens[1].height,color=wavelengthToRGB(backgroundWavelength,gamma),batch=batch2)
+foregroundObject = shapes.Circle(
+    0.5*(screens[1].width-screens[1].height//3), 0.5*(screens[1].height-screens[1].width//9), screens[1].height//19, screens[1].width//19, color=wavelengthToRGB(foregroundWavelength, gamma), batch=batch)
 # foregroundObject.anchor_x = foregroundObject.width//2
 # foregroundObject.anchor_x = foregroundObject.height//2
 
 # create event handlers that update with drawing the batch, im not sure how often this occurs
-
-draw = 0
 @window1.event
 def on_draw():
     window1.clear()
-#    batch1.draw()
-    drawBatch(draw)
+    batch.draw()
     
 
 #@window2.event
@@ -70,24 +59,8 @@ def on_draw():
 
 @window1.event
 def on_key_press(symbol, modifiers):
-    global draw
     if symbol == key.ENTER or symbol == key.ESCAPE:
         pyglet.app.exit()
-    if symbol == key.A:
-        draw = 0
-    if symbol == key.S:
-        draw = 1
-    if symbol == key.D:
-        draw = 2
-	
-
-def drawBatch(bool):
-    if bool == 0:
-        batch.draw()
-    elif bool == 1:
-        batch1.draw()
-    else:
-        batch2.draw()
 
 # set visible after all initialization
 window1.set_visible()
