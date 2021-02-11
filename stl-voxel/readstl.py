@@ -2,12 +2,13 @@ import numpy
 from stl import mesh
 from mpl_toolkits import mplot3d
 from matplotlib import pyplot
+import skimage
 
 # Create a new plot
 figure = pyplot.figure()
 axes = mplot3d.Axes3D(figure)
 
-myMesh = mesh.Mesh.from_file("stl-voxel/cylinder.STL")
+myMesh = mesh.Mesh.from_file("cylinder.STL")
 
 # myMesh is of the data type 
 # dtype = dtype([('normals', '<f4', (3,)), ('vectors', '<f4', (3, 3)), ('attr', '<u2', (1,))])
