@@ -19,8 +19,8 @@ import time
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-PUL = 12 # needs to be on a pwn pin - pwn pins are 12, 32, 33, 35 
-DIR = 11
+PUL = 18  # == RPi 4-Pin #12
+DIR = 27  # == RPi 4-Pin #13
 
 # OPTO and ENA pins are not needed for this application
 
