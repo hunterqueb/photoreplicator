@@ -26,7 +26,7 @@ DIR = 11
 
 GPIO.setup(DIR, GPIO.OUT)
 GPIO.setup(PUL,GPIO.OUT)
-pwmPin = GPIO.PWM(PUL, 133333) # 2nd arg. pulse width in hz, minimum for our driver is 7.5 microseconds or 1/(7.5 microsec)
+pwmPin = GPIO.PWM(PUL, 53333) # 2nd arg. pulse width in hz, minimum for our driver is 7.5 microseconds or 1/(7.5 microsec)
 pwmPin.start(0)  # start the pwm at 0 - off
 
 SPR = 400 # value dependent on the switches on the outside of the driver
@@ -42,5 +42,7 @@ pwmPin.ChangeDutyCycle(25)
 time.sleep(5)
 pwmPin.ChangeDutyCycle(0)
 print("done! turning off")
+
+
 
 GPIO.cleanup()
