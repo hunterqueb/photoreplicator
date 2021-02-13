@@ -8,9 +8,19 @@
 # Connect GPIO pins as shown below) to the "-" input for each: ENA, PUL, and DIR
 #
 #
+
+
+
+
+
+# TODO
+# - add opto pin set to high
+# - find good resource to see how to control the speed of the stepper (arduino's stepper.h could be useful)
+
 from time import sleep
 import RPi.GPIO as GPIO
 #
+# gpio pins are different than the actual pin numbers of the board. when using this, the pins being refered to are the gpio pin references
 PUL = 17  # Stepper Drive Pulses
 DIR = 27  # Controller Direction Bit (High for Controller default / LOW to Force a Direction Change).
 ENA = 22  # Controller Enable Bit (High to Enable / LOW to Disable).
