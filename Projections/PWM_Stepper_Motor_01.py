@@ -17,6 +17,7 @@ from time import sleep
 import RPi.GPIO as GPIO
 #
 # gpio pins are different than the actual pin numbers of the board. when using this, the pins being refered to are the gpio pin references
+ENA = 2 # tester to see if pi pinout can handle lvl converting using GPIO pins
 PUL = 17  # Stepper Drive Pulses
 DIR = 27  # Controller Direction Bit (High for Controller default / LOW to Force a Direction Change).
 OPTO = 22  # Controller Enable Bit (High to Enable / LOW to Disable).
@@ -30,6 +31,8 @@ GPIO.setup(PUL, GPIO.OUT)
 GPIO.setup(DIR, GPIO.OUT)
 GPIO.setup(OPTO, GPIO.OUT)
 
+GPIO.setup(ENA,GPIO.OUT)
+GPIO.output(ENA, GPIO.HIGH)
 print('PUL = GPIO 17 - RPi 3B-Pin #11')
 print('DIR = GPIO 27 - RPi 3B-Pin #13')
 print('OPTO = GPIO 22 - RPi 3B-Pin #15')
