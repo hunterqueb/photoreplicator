@@ -48,8 +48,8 @@ print('ENA = GPIO 22 - RPi 3B-Pin #15')
 print('Initialization Completed')
 #
 # Could have usesd only one DURATION constant but chose two. This gives play options.
-durationFwd = 5000 # This is the duration of the motor spinning. used for forward direction
-durationBwd = 5000 # This is the duration of the motor spinning. used for reverse direction
+durationFwd = 400 # This is the duration of the motor spinning. used for forward direction
+durationBwd = 400 # This is the duration of the motor spinning. used for reverse direction
 print('Duration Fwd set to ' + str(durationFwd))
 print('Duration Bwd set to ' + str(durationBwd))
 #
