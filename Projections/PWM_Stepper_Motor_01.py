@@ -49,11 +49,12 @@ print('Initialization Completed')
 #
 # Could have usesd only one DURATION constant but chose two. This gives play options.
 durationFwd = 400 # This is the duration of the motor spinning. used for forward direction
+# this is the number of half pulses to send. if you want to move a whole rev, use the sw4-6 and find the number of pulses per rev and multiply by 2
 durationBwd = 400 # This is the duration of the motor spinning. used for reverse direction
 print('Duration Fwd set to ' + str(durationFwd))
 print('Duration Bwd set to ' + str(durationBwd))
 #
-delay = 0.0000001 # This is actualy a delay between PUL pulses - effectively sets the mtor rotation speed.
+delay = 0.0000001 # This is actualy a delay between PUL pulses - effectively sets the mtor rotation speed. - need to calculate this
 print('Speed set to ' + str(delay))
 #
 cycles = 1000 # This is the number of cycles to be run once program is started.
