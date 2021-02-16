@@ -14,18 +14,15 @@ from StepperMotorClass import StepperMotor
 # 
 # 
 # 
+GPIO.cleanup()
 
-
-
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
 
 VOLT = 2 # tester to see if pi pinout can handle lvl converting using GPIO pins
 PUL = 17  # Stepper Drive Pulses
 DIR = 27  # Controller Direction Bit (High for Controller default / LOW to Force a Direction Change).
 OPTO = 22  # Controller Enable Bit (High to Enable / LOW to Disable).
 
-stepper1 = StepperMotor(VOLT,PUL,DIR,OPTO,0,GPIO,400)
+stepper1 = StepperMotor(VOLT,PUL,DIR,OPTO,400,0)
 
 while x == True:
     stepper1.driveMotorVel(1)

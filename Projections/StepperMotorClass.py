@@ -1,13 +1,15 @@
-from time import sleep
 import RPi.GPIO as GPIO
+from time import sleep
 import os
 
 class StepperMotor:
-    def __init__(self,VOLT,PUL,DIR,OPTO,LEAD,GPIO,PULSES_PER_REV):
+    def __init__(self,VOLT,PUL,DIR,OPTO,PULSES_PER_REV,LEAD):
     # takes the input on construction the pin to control voltage, pin to pulse, pin to change direction, pin to enable opto
     #   -these pins are enabled referred as the GPIO pin references
     # a boolean value to choose the whether the motor is apart of the lead screw array or whether is it the direct drive motor
     # and the GPIO object
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
 
         self.VOLT = VOLT
         self.PUL = PUL
@@ -15,8 +17,6 @@ class StepperMotor:
         self.OPTO = OPTO
         self.LEAD = LEAD
         self.PULSES_PER_REV = PULSES_PER_REV
-
-        # GPIO.setmode(GPIO.BCM)
 
         GPIO.setup(self.PUL, GPIO.OUT)
         GPIO.setup(self.OPTO, GPIO.OUT)
