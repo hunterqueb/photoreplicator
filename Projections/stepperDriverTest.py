@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+from StepperMotorClass import StepperMotor
 
 # some notes on stepper motors
 # the pi outputs a high signal from the GPIO pins as 3.3v and not 5v like the arduino, this means that certain drivers, like the one we are using
@@ -19,31 +20,14 @@ import time
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-PUL = 18  # == RPi 4-Pin #12
-DIR = 27  # == RPi 4-Pin #13
+VOLT = 2 # tester to see if pi pinout can handle lvl converting using GPIO pins
+PUL = 17  # Stepper Drive Pulses
+DIR = 27  # Controller Direction Bit (High for Controller default / LOW to Force a Direction Change).
+OPTO = 22  # Controller Enable Bit (High to Enable / LOW to Disable).
 
-# OPTO and ENA pins are not needed for this application
+stepper1 = StepperMotor(VOLT,PUL,DIR,OPTO,0,GPIO,400)
 
-GPIO.setup(DIR, GPIO.OUT)
-GPIO.setup(PUL,GPIO.OUT)
-pwmPin = GPIO.PWM(PUL, 53333) # 2nd arg. pulse width in hz, minimum for our driver is 7.5 microseconds or 1/(7.5 microsec)
-pwmPin.start(0)  # start the pwm at 0 - off
-
-SPR = 400 # value dependent on the switches on the outside of the driver
-
-print("half speed\n")
-pwmPin.ChangeDutyCycle(50) # half power - this value has a range of 0 to 100 to determine the speed of the motor
-time.sleep(5) 
-print("full speed\n")
-pwmPin.ChangeDutyCycle(100)
-time.sleep(5)
-print("quarter speed\n")
-pwmPin.ChangeDutyCycle(25)
-time.sleep(5)
-pwmPin.ChangeDutyCycle(0)
-
-print("done! turning off")
-
-
+while x == True:
+    stepper1.driveMotorVel(1)
 
 GPIO.cleanup()
