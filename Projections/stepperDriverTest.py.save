@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from time import sleep
+import time
 from StepperMotorClass import StepperMotor
 
 # some notes on stepper motors
@@ -26,11 +26,8 @@ stepper1 = StepperMotor(VOLT,PUL,DIR,OPTO,400,0)
 
 while True:
     stepper1.driveMotorVel(1)
-    sleep(1)
-#    stepper1.changeDirection()
-#    stepper1.driveMotorVel(2)
-#    sleep(1)
-#    stepper1.changeDirection()
-#    stepper1.driveMotorVel(1)
-    
+	    stepper1.changeDirection()
+    stepper1.driveMotorVel(2)
+    stepper1.changeDirection()
+
 GPIO.cleanup()

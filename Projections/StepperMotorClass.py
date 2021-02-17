@@ -20,6 +20,7 @@ class StepperMotor:
 
         GPIO.setup(self.PUL, GPIO.OUT)
         GPIO.setup(self.OPTO, GPIO.OUT)
+        GPIO.output(self.OPTO, GPIO.HIGH)
 
         GPIO.setup(self.VOLT,GPIO.OUT)
         GPIO.output(self.VOLT, GPIO.HIGH)
@@ -49,15 +50,15 @@ class StepperMotor:
             GPIO.output(self.PUL, GPIO.LOW)
             sleep(self.PULSE_DELAY)
 
-    def changeDirecton(self):
+    def changeDirection(self):
         if self.currentDirection == GPIO.LOW:
-            self.currentDirection = GPIO.LOW
-        else:
             self.currentDirection = GPIO.HIGH
+        else:
+            self.currentDirection = GPIO.LOW
 
 
         GPIO.output(self.OPTO, GPIO.LOW)
         sleep(0.001)
         GPIO.output(self.DIR, self.currentDirection)
-        GPIO.output(self.VOLT, GPIO.HIGH)
+        GPIO.output(self.OPTO, GPIO.HIGH)
 

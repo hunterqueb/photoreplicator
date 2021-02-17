@@ -54,8 +54,8 @@ yellowBackground = shapes.Rectangle(0, 0, screens[1].width, screens[1].height, c
 
 
 if objectToProject == "rectangle":
-    rectangleWidth = 100
-    rectangleHeight = 300
+    rectangleWidth = 200
+    rectangleHeight = 600
     foregroundObject = shapes.Rectangle(
         width=rectangleWidth, height=rectangleHeight, x=screens[1].width//2 - rectangleWidth, y=screens[1].height//2 - rectangleHeight, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "circle":
