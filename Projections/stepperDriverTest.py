@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
-from StepperMotorClass import StepperMotor
+from libraries.stepperMotor.StepperMotorClass import StepperMotor
 
 # some notes on stepper motors
 # the pi outputs a high signal from the GPIO pins as 3.3v and not 5v like the arduino, this means that certain drivers, like the one we are using
