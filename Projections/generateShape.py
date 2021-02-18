@@ -60,7 +60,7 @@ if objectToProject == "rectangle":
         width=rectangleWidth, height=rectangleHeight, x=screens[1].width//2 - rectangleWidth, y=screens[1].height//2 - rectangleHeight, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "circle":
     foregroundObject = shapes.Circle(
-        x=screens[1].width//2, y=screens[1].height//2, radius=50, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
+        x=screens[1].width//2, y=screens[1].height//2, radius=200, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 draw = 0
 
 
