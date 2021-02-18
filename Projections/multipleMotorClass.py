@@ -24,8 +24,8 @@ class StepperMotors:
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
 
-        if (len(VOLT) != MOTOR_COUNT | len(PUL) != MOTOR_COUNT | len(DIR) != MOTOR_COUNT | len(OPTO) != MOTOR_COUNT | len(PULSES_PER_REV) != MOTOR_COUNT | len(LEAD) != 3):
-            raise Exception()
+        # if (len(VOLT) != MOTOR_COUNT | len(PUL) != MOTOR_COUNT | len(DIR) != MOTOR_COUNT | len(OPTO) != MOTOR_COUNT | len(PULSES_PER_REV) != MOTOR_COUNT | len(LEAD) != MOTOR_COUNT):
+        #     raise Exception()
 
         self.VOLT = VOLT
         self.PUL = PUL
