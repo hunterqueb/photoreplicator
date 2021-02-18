@@ -97,10 +97,20 @@ def on_key_press(symbol, modifiers):
         pyglet.app.exit()
     if symbol == key._1:
         colorToDraw = visibleForegroundWavelenth
-        foregroundObject.color = wavelengthToRGB(colorToDraw, gamma)
+        try:
+            foregroundObject[0].color = wavelengthToRGB(colorToDraw, gamma)
+            foregroundObject[1].color = wavelengthToRGB(colorToDraw, gamma)
+            foregroundObject[2].color = wavelengthToRGB(colorToDraw, gamma)
+        except:
+            pass
     if symbol == key._2:
         colorToDraw = foregroundWavelength
-        foregroundObject.color = wavelengthToRGB(colorToDraw, gamma)
+        try:
+            foregroundObject[0].color = wavelengthToRGB(colorToDraw, gamma)
+            foregroundObject[1].color = wavelengthToRGB(colorToDraw, gamma)
+            foregroundObject[2].color = wavelengthToRGB(colorToDraw, gamma)
+        except:
+            pass
     if symbol == key.A:
         draw = 0
     if symbol == key.S:
