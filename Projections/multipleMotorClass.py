@@ -37,6 +37,7 @@ class StepperMotors:
         self.STEPS_PER_REV = 200 # same for both nema 11 and nema 17
         self.currentDirection = [GPIO.LOW, GPIO.LOW, GPIO.LOW]
         self.MOTOR_COUNT = int(MOTOR_COUNT)
+        self.motorStep = [0,0,0]
 
         for i in range(MOTOR_COUNT):
             GPIO.setup(self.PUL[i], GPIO.OUT)
