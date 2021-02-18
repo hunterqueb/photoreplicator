@@ -5,6 +5,15 @@ from pyglet import shapes
 import sys
 from libraries.wavelengthToRGB.wavelengthToRGB import wavelengthToRGB
 
+# TODO
+# add cup -- u shaped object
+# fix pawn shape
+# add hourglass shape
+# look into import shapes/sillouettes into pyglet
+
+# prints 30 pixels/mm
+# accuracy of 33 microns - 
+
 try:
     objectToProject = sys.argv[1]
 except:
