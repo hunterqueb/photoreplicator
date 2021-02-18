@@ -38,6 +38,8 @@ class StepperMotors:
         self.currentDirection = [GPIO.LOW, GPIO.LOW, GPIO.LOW]
         self.MOTOR_COUNT = int(MOTOR_COUNT)
         self.motorStep = [0,0,0]
+        self.PULSES_PER_SEC = [0,0,0]
+        self.PULSE_DELAY = [0,0,0] 
 
         for i in range(MOTOR_COUNT):
             GPIO.setup(self.PUL[i], GPIO.OUT)
