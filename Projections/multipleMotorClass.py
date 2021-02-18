@@ -24,7 +24,7 @@ class StepperMotors:
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
 
-        if (len(VOLT) != 3 | len(PUL) != 3 | len(DIR) != 3 | len(OPTO) != 3 | len(PULSES_PER_REV) != 3 | len(LEAD) != 3):
+        if (len(VOLT) != MOTOR_COUNT | len(PUL) != MOTOR_COUNT | len(DIR) != MOTOR_COUNT | len(OPTO) != MOTOR_COUNT | len(PULSES_PER_REV) != MOTOR_COUNT | len(LEAD) != 3):
             raise Exception()
 
         self.VOLT = VOLT
@@ -68,13 +68,13 @@ class StepperMotors:
         self.PULSES_PER_SEC[0] = 2 * self.PULSES_PER_REV[0] * REVS / TRAVEL_TIME
         self.PULSE_DELAY[0] = 0.5 * 1 / self.PULSES_PER_SEC[0]
 
-        for i in range(2):
+        for i in range(MOTOR_COUNT-1):
             self.PULSES_PER_SEC[i+1] = 2 * self.PULSES_PER_REV[i+1]  * LEAD_SCREW_TRAVEL_DISTANCE / (self.LEAD_DISTANCE * TRAVEL_TIME)
             self.PULSE_DELAY[i+1] = 0.5 * 1 / self.PULSES_PER_SEC[i+1]
 
         motorStepTarget = [REVS, (self.LEAD_DISTANCE * TRAVEL_TIME),(self.LEAD_DISTANCE * TRAVEL_TIME)]
 
-        for i in range(3):
+        for i in range(MOTOR_COUNT):
             motorStepTarget[i] = 200 * motorStepTarget[i]
             if self.currentDirection[i] == 1:
                 motorStepTarget[i] = self.motorStep[i] - motorStepTarget[i]
