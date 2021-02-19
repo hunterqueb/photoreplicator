@@ -35,7 +35,7 @@ class StepperMotors:
         self.PULSES_PER_REV = PULSES_PER_REV
         self.LEAD_DISTANCE = 8 # in mm
         self.STEPS_PER_REV = 200 # same for both nema 11 and nema 17
-        self.currentDirection = [GPIO.LOW, GPIO.LOW, GPIO.LOW]
+        self.currentDirection = [GPIO.LOW, GPIO.HIGH, GPIO.HIGH]
         self.MOTOR_COUNT = int(MOTOR_COUNT)
         self.motorStep = [0,0,0]
         self.PULSES_PER_SEC = [0,0,0]
@@ -101,11 +101,13 @@ class StepperMotors:
                 sleep(self.PULSE_DELAY[2])
                 self.motorStep[2] += 1
 
-    def changeLeadDirections(self):
+    def changeLeadDirections(self,DIRECTION):
         for i in range(2):
-            if self.currentDirection[i+1] == GPIO.LOW:
+            if DIRECTION == "UP":
                 self.currentDirection[i+1] = GPIO.HIGH
                 GPIO.output(self.DIR[i+1], self.currentDirection[i+1])
-            else:
+            elif DIRECTION == "DOWN":
                 self.currentDirection[i+1] = GPIO.LOW
                 GPIO.output(self.DIR[i+1], self.currentDirection[i+1])
+            else:
+                raise Exception()
