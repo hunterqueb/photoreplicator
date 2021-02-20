@@ -80,6 +80,10 @@ elif objectToProject == "pawn":
         x=screens[0].width//2 + rectangleWidth//2, y=screens[0].height//3, radius=250, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
     foregroundObject[2] = shapes.Rectangle(
         width=rectangleHeight, height=rectangleWidth/2, x=screens[0].width//2 - rectangleWidth, y=screens[0].height//2 - rectangleHeight, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
+elif objectToProject == "polygonTest":
+    RGBColorToDraw = wavelengthToRGB(colorToDraw, gamma)
+    polygonColor = [RGBColorToDraw[0],RGBColorToDraw[1],RGBColorToDraw[2],255]
+    batch.add(4, pyglet.gl.GL_POLYGON, None, ('v2i',[100,600,600,600,600,100,100,100]), ('c4B',polygonColor*4))
 
 
 
