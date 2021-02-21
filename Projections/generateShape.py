@@ -62,24 +62,24 @@ purpleBackground = shapes.Rectangle(0, 0, screens[0].width, screens[0].height, c
 yellowBackground = shapes.Rectangle(0, 0, screens[0].width, screens[0].height, color=wavelengthToRGB(
     backgroundWavelength, gamma), batch=deactivateResin)
 
-foregroundObject = [None,None,None]
+foregroundObjectShapes = [None,None,None]
 
 if objectToProject == "rectangle":
     rectangleWidth = 200
     rectangleHeight = 600
-    foregroundObject[0] = shapes.Rectangle(
+    foregroundObjectShapes[0] = shapes.Rectangle(
         width=rectangleWidth, height=rectangleHeight, x=screens[0].width//2 - rectangleWidth, y=screens[0].height//2 - rectangleHeight, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "circle":
-    foregroundObject[0] = shapes.Circle(
+    foregroundObjectShapes[0] = shapes.Circle(
         x=screens[0].width//2, y=screens[0].height//2, radius=250, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "pawn":
     rectangleWidth = 200
     rectangleHeight = 600
-    foregroundObject[0] = shapes.Rectangle(
+    foregroundObjectShapes[0] = shapes.Rectangle(
         width=rectangleWidth, height=rectangleHeight/2, x=screens[0].width//2, y=screens[0].height//2 - rectangleHeight, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
-    foregroundObject[1] = shapes.Circle(
+    foregroundObjectShapes[1] = shapes.Circle(
         x=screens[0].width//2 + rectangleWidth//2, y=screens[0].height//3, radius=250, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
-    foregroundObject[2] = shapes.Rectangle(
+    foregroundObjectShapes[2] = shapes.Rectangle(
         width=rectangleHeight, height=rectangleWidth/2, x=screens[0].width//2 - rectangleWidth, y=screens[0].height//2 - rectangleHeight, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "polygonTest":
     RGBColorToDraw = wavelengthToRGB(colorToDraw, gamma)
@@ -89,9 +89,7 @@ elif objectToProject == "class":
     objectDrawn = pygletVertex(batch,4,[100, 600, 600, 600, 600, 100, 100, 100])
     batch = objectDrawn.initialDraw()
     batch = objectDrawn.changeColor(wavelengthToRGB(foregroundWavelength, gamma))
-    batch = objectDrawn.changeDirection("right",700)
-
-
+    batch = objectDrawn.movePolygon("right", 700)
 
 draw = 0
 
@@ -117,17 +115,17 @@ def on_key_press(symbol, modifiers):
     if symbol == key._1:
         colorToDraw = visibleForegroundWavelenth
         try:
-            foregroundObject[0].color = wavelengthToRGB(colorToDraw, gamma)
-            foregroundObject[1].color = wavelengthToRGB(colorToDraw, gamma)
-            foregroundObject[2].color = wavelengthToRGB(colorToDraw, gamma)
+            foregroundObjectShapes[0].color = wavelengthToRGB(colorToDraw, gamma)
+            foregroundObjectShapes[1].color = wavelengthToRGB(colorToDraw, gamma)
+            foregroundObjectShapes[2].color = wavelengthToRGB(colorToDraw, gamma)
         except:
             pass
     if symbol == key._2:
         colorToDraw = foregroundWavelength
         try:
-            foregroundObject[0].color = wavelengthToRGB(colorToDraw, gamma)
-            foregroundObject[1].color = wavelengthToRGB(colorToDraw, gamma)
-            foregroundObject[2].color = wavelengthToRGB(colorToDraw, gamma)
+            foregroundObjectShapes[0].color = wavelengthToRGB(colorToDraw, gamma)
+            foregroundObjectShapes[1].color = wavelengthToRGB(colorToDraw, gamma)
+            foregroundObjectShapes[2].color = wavelengthToRGB(colorToDraw, gamma)
         except:
             pass
     if symbol == key.A:
@@ -138,31 +136,31 @@ def on_key_press(symbol, modifiers):
         draw = 2
     if symbol == key.LEFT:
         try:
-            foregroundObject[0].x -= 10
-            foregroundObject[1].x -= 10
-            foregroundObject[2].x -= 10
+            foregroundObjectShapes[0].x -= 10
+            foregroundObjectShapes[1].x -= 10
+            foregroundObjectShapes[2].x -= 10
         except:
             pass
     if symbol == key.RIGHT:
         try:
-            foregroundObject[0].x += 10
-            foregroundObject[1].x += 10
-            foregroundObject[2].x += 10
+            foregroundObjectShapes[0].x += 10
+            foregroundObjectShapes[1].x += 10
+            foregroundObjectShapes[2].x += 10
         except:
             pass
 
     if symbol == key.UP:
         try:
-            foregroundObject[0].y += 10
-            foregroundObject[1].y += 10
-            foregroundObject[2].y += 10
+            foregroundObjectShapes[0].y += 10
+            foregroundObjectShapes[1].y += 10
+            foregroundObjectShapes[2].y += 10
         except:
             pass
     if symbol == key.DOWN:
         try:
-            foregroundObject[0].y -= 10
-            foregroundObject[1].y -= 10
-            foregroundObject[2].y -= 10
+            foregroundObjectShapes[0].y -= 10
+            foregroundObjectShapes[1].y -= 10
+            foregroundObjectShapes[2].y -= 10
         except:
             pass
 
