@@ -88,7 +88,6 @@ elif objectToProject == "polygonTest":
 elif objectToProject == "class":
     objectDrawn = pygletVertex(batch,4,[100, 600, 600, 600, 600, 100, 100, 100])
     batch = objectDrawn.initialDraw()
-    batch = objectDrawn.changeColor(wavelengthToRGB(foregroundWavelength, gamma))
     batch = objectDrawn.movePolygon("right", 700)
 
 draw = 0
@@ -118,6 +117,8 @@ def on_key_press(symbol, modifiers):
             foregroundObjectShapes[0].color = wavelengthToRGB(colorToDraw, gamma)
             foregroundObjectShapes[1].color = wavelengthToRGB(colorToDraw, gamma)
             foregroundObjectShapes[2].color = wavelengthToRGB(colorToDraw, gamma)
+            batch = objectDrawn.changeColor(wavelengthToRGB(colorToDraw, gamma))
+
         except:
             pass
     if symbol == key._2:
@@ -126,6 +127,8 @@ def on_key_press(symbol, modifiers):
             foregroundObjectShapes[0].color = wavelengthToRGB(colorToDraw, gamma)
             foregroundObjectShapes[1].color = wavelengthToRGB(colorToDraw, gamma)
             foregroundObjectShapes[2].color = wavelengthToRGB(colorToDraw, gamma)
+            batch = objectDrawn.changeColor(wavelengthToRGB(colorToDraw, gamma))
+
         except:
             pass
     if symbol == key.A:
@@ -139,6 +142,7 @@ def on_key_press(symbol, modifiers):
             foregroundObjectShapes[0].x -= 10
             foregroundObjectShapes[1].x -= 10
             foregroundObjectShapes[2].x -= 10
+            batch = objectDrawn.movePolygon("left", 10)
         except:
             pass
     if symbol == key.RIGHT:
@@ -146,6 +150,8 @@ def on_key_press(symbol, modifiers):
             foregroundObjectShapes[0].x += 10
             foregroundObjectShapes[1].x += 10
             foregroundObjectShapes[2].x += 10
+            batch = objectDrawn.movePolygon("right", 10)
+
         except:
             pass
 
@@ -154,6 +160,8 @@ def on_key_press(symbol, modifiers):
             foregroundObjectShapes[0].y += 10
             foregroundObjectShapes[1].y += 10
             foregroundObjectShapes[2].y += 10
+            batch = objectDrawn.movePolygon("up", 10)
+
         except:
             pass
     if symbol == key.DOWN:
@@ -161,6 +169,8 @@ def on_key_press(symbol, modifiers):
             foregroundObjectShapes[0].y -= 10
             foregroundObjectShapes[1].y -= 10
             foregroundObjectShapes[2].y -= 10
+            batch = objectDrawn.movePolygon("down", 10)
+
         except:
             pass
 
