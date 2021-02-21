@@ -19,7 +19,7 @@ class pygletVertex:
         self.updateBatch()
         return self.batch
 
-    def changeDirection(self, direction, moveAmount):
+    def movePolygon(self, direction, moveAmount):
         if direction == 'up':
             for i in range(len(self.vertexArray)):
                 if i % 2 == 1:
