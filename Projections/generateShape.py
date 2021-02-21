@@ -4,6 +4,7 @@ from pyglet import shapes
 
 import sys
 from libraries.wavelengthToRGB.wavelengthToRGB import wavelengthToRGB
+from libraries.vertexClass.vertexClass import pygletVertex
 
 # TODO
 # add cup -- u shaped object
@@ -84,6 +85,11 @@ elif objectToProject == "polygonTest":
     RGBColorToDraw = wavelengthToRGB(colorToDraw, gamma)
     polygonColor = [RGBColorToDraw[0],RGBColorToDraw[1],RGBColorToDraw[2],255]
     batch.add(4, pyglet.gl.GL_POLYGON, None, ('v2i',[100,600,600,600,600,100,100,100]), ('c4B',polygonColor*4))
+elif objectToProject == "class":
+    objectDrawn = pygletVertex(batch,4,[100, 600, 600, 600, 600, 100, 100, 100])
+    batch = objectDrawn.initialDraw()
+    batch = objectDrawn.changeColor(wavelengthToRGB(foregroundWavelength, gamma))
+    batch = objectDrawn.changeDirection("right",700)
 
 
 
