@@ -11,9 +11,11 @@ from libraries.vertexClass.vertexClass import pygletVertex
 # fix pawn shape
 # add hourglass shape
 # look into import shapes/sillouettes into pyglet
+# need to write a function to flip the geometry of whatever is being displayed
+# figure out the relative imports
 
 # prints 30 pixels/mm
-# accuracy of 33 microns - 
+# accuracy of 33 microns
 
 try:
     objectToProject = sys.argv[1]
@@ -21,20 +23,14 @@ except:
     objectToProject = "rectangle"
     print('object not specified, defaulting to rectangle')
 
-# to be done for this project
-# need to get find how to update picture of foreground object with refresh rate of monitor
-# need to write a function to flip the geometry of whatever is being displayed
-# need to write a funciton that generates object picturewith depth
-# figure out the relative imports
 
 # get the displays and screen information
 displays = pyglet.canvas.get_display()
 screens = displays.get_screens()
 
 # instance the window object for each display
-window1 = pyglet.window.Window(1920, 1080, fullscreen=False, screen=screens[0], visible=True)
-#window2 = pyglet.window.Window(
-#    fullscreen=True, screen=screens[0], visible=False)
+window1 = pyglet.window.Window(1920, 1080, fullscreen=False, screen=screens[0], visible=False)
+# window2 = pyglet.window.Window(1920, 1080, fullscreen=False, screen=screens[1], visible=False)
 
 
 # create a batch of shapes the program draws
@@ -62,7 +58,9 @@ purpleBackground = shapes.Rectangle(0, 0, screens[0].width, screens[0].height, c
 yellowBackground = shapes.Rectangle(0, 0, screens[0].width, screens[0].height, color=wavelengthToRGB(
     backgroundWavelength, gamma), batch=deactivateResin)
 
-foregroundObjectShapes = [None,None,None]
+NUM_OF_POLYGONS = 5
+
+foregroundObjectShapes = [None]*NUM_OF_POLYGONS
 
 if objectToProject == "rectangle":
     rectangleWidth = 200
@@ -82,24 +80,29 @@ elif objectToProject == "pawn":
     foregroundObjectShapes[2] = shapes.Rectangle(
         width=rectangleHeight, height=rectangleWidth/2, x=screens[0].width//2 - rectangleWidth, y=screens[0].height//2 - rectangleHeight, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "polygonTest":
-    RGBColorToDraw = wavelengthToRGB(colorToDraw, gamma)
-    polygonColor = [RGBColorToDraw[0],RGBColorToDraw[1],RGBColorToDraw[2],255]
-    batch.add(4, pyglet.gl.GL_POLYGON, None, ('v2i',[100,600,600,600,600,100,100,100]), ('c4B',polygonColor*4))
-elif objectToProject == "class":
-    objectDrawn = pygletVertex(batch,4,[100, 600, 600, 600, 600, 100, 100, 100])
-    batch = objectDrawn.initialDraw()
-    batch = objectDrawn.movePolygon("right", 700)
+    # in order to draw a polygon, you need to follow this format
+    # first define the objectDrawn object using the class, pass in the batch, vertex count, and vertices locations
+    # the idea is we can find test however we want.
+    polygon = [100, 700, 300, 700, 300, 100, 100, 100]
+    polygonVertexNum = int(len(polygon)/2)
+
+    objectDrawn = pygletVertex(batch, polygonVertexNum, polygon)
+    # now draw the initial batches
+    vertexList = objectDrawn.initialDraw(batch)
+    
+    # when you want to move the object to the right, you have to follow this general format
+    # you must first delete the vertexList
+    vertexList.delete()
+    # then you call the method to redraw the polygon
+    vertexList = objectDrawn.movePolygon(batch, "right", 700)
 
 draw = 0
-
-
 
 # create event handlers that update with drawing the batch, im not sure how often this occurs
 @window1.event
 def on_draw():
     window1.clear()
     drawBatch(draw)
-
 
 #@window2.event
 #def on_draw():
@@ -109,26 +112,30 @@ def on_draw():
 @window1.event
 def on_key_press(symbol, modifiers):
     global draw
+    global vertexList
     if symbol == key.ENTER or symbol == key.ESCAPE:
         pyglet.app.exit()
     if symbol == key._1:
         colorToDraw = visibleForegroundWavelenth
         try:
-            foregroundObjectShapes[0].color = wavelengthToRGB(colorToDraw, gamma)
-            foregroundObjectShapes[1].color = wavelengthToRGB(colorToDraw, gamma)
-            foregroundObjectShapes[2].color = wavelengthToRGB(colorToDraw, gamma)
-            batch = objectDrawn.changeColor(wavelengthToRGB(colorToDraw, gamma))
-
+            if foregroundObjectShapes[0] == None:
+                vertexList.delete()
+                vertexList = objectDrawn.changeColor(batch, wavelengthToRGB(colorToDraw, gamma))
+            else:
+                for i in range(NUM_OF_POLYGONS):
+                    foregroundObjectShapes[i].color = wavelengthToRGB(colorToDraw, gamma)
         except:
             pass
     if symbol == key._2:
         colorToDraw = foregroundWavelength
         try:
-            foregroundObjectShapes[0].color = wavelengthToRGB(colorToDraw, gamma)
-            foregroundObjectShapes[1].color = wavelengthToRGB(colorToDraw, gamma)
-            foregroundObjectShapes[2].color = wavelengthToRGB(colorToDraw, gamma)
-            batch = objectDrawn.changeColor(wavelengthToRGB(colorToDraw, gamma))
-
+            if foregroundObjectShapes[0] == None:
+                vertexList.delete()
+                vertexList = objectDrawn.changeColor(
+                    batch, wavelengthToRGB(colorToDraw, gamma))
+            else:
+                for i in range(NUM_OF_POLYGONS):
+                    foregroundObjectShapes[i].color = wavelengthToRGB(colorToDraw, gamma)
         except:
             pass
     if symbol == key.A:
@@ -139,38 +146,42 @@ def on_key_press(symbol, modifiers):
         draw = 2
     if symbol == key.LEFT:
         try:
-            foregroundObjectShapes[0].x -= 10
-            foregroundObjectShapes[1].x -= 10
-            foregroundObjectShapes[2].x -= 10
-            batch = objectDrawn.movePolygon("left", 10)
+            if foregroundObjectShapes[0] == None:
+                vertexList.delete()
+                vertexList = objectDrawn.movePolygon(batch, "left", 10)
+            else:
+                for i in range(NUM_OF_POLYGONS):
+                    foregroundObjectShapes[i].x -= 10
         except:
             pass
     if symbol == key.RIGHT:
         try:
-            foregroundObjectShapes[0].x += 10
-            foregroundObjectShapes[1].x += 10
-            foregroundObjectShapes[2].x += 10
-            batch = objectDrawn.movePolygon("right", 10)
-
+            if foregroundObjectShapes[0] == None:
+                vertexList.delete()
+                vertexList = objectDrawn.movePolygon(batch, "right", 10)
+            else:
+                for i in range(NUM_OF_POLYGONS):
+                    foregroundObjectShapes[i].x += 10
         except:
             pass
-
     if symbol == key.UP:
         try:
-            foregroundObjectShapes[0].y += 10
-            foregroundObjectShapes[1].y += 10
-            foregroundObjectShapes[2].y += 10
-            batch = objectDrawn.movePolygon("up", 10)
-
+            if foregroundObjectShapes[0] == None:
+                vertexList.delete()
+                vertexList = objectDrawn.movePolygon(batch, "up", 10)
+            else:
+                for i in range(NUM_OF_POLYGONS):
+                    foregroundObjectShapes[i].y += 10
         except:
             pass
     if symbol == key.DOWN:
         try:
-            foregroundObjectShapes[0].y -= 10
-            foregroundObjectShapes[1].y -= 10
-            foregroundObjectShapes[2].y -= 10
-            batch = objectDrawn.movePolygon("down", 10)
-
+            if foregroundObjectShapes[0] == None:
+                vertexList.delete()
+                vertexList = objectDrawn.movePolygon(batch, "down", 10)
+            else:
+                for i in range(NUM_OF_POLYGONS):
+                    foregroundObjectShapes[i].y -= 10
         except:
             pass
 
