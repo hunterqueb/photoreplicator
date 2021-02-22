@@ -3,28 +3,26 @@ from libraries.wavelengthToRGB.wavelengthToRGB import wavelengthToRGB
 
 class pygletVertex:
     def __init__(self, batch, numVertices, vertexArray):
-        self.batch = batch
         self.numVertices = numVertices
-        self.vertexArray = [None]*numVertices*2
         self.vertexArray = vertexArray
         
         visibleForegroundWavelenth = 680
         RGBValue = wavelengthToRGB(visibleForegroundWavelenth, 1)
         self.polygonColor = [RGBValue[0], RGBValue[1], RGBValue[2], 255]
 
-    def initialDraw(self):
+    def initialDraw(self, batch):
         
-        self.updateBatch()
-        return self.batch
+        vertexList = self.updateBatch(batch)
+        return vertexList
 
-    def changeVertices(self,numVertices,vertexArray):
+    def changeVertices(self, batch, numVertices, vertexArray):
         self.numVertices = numVertices
         self.vertexArray = vertexArray
 
-        self.updateBatch()
-        return self.batch
+        vertexList = self.updateBatch(batch)
+        return vertexList
 
-    def movePolygon(self, direction, moveAmount):
+    def movePolygon(self, batch, direction, moveAmount):
         if direction == 'up':
             for i in range(len(self.vertexArray)):
                 if i % 2 == 1:
@@ -42,25 +40,24 @@ class pygletVertex:
                 if i % 2 == 0:
                     self.vertexArray[i] += moveAmount
 
-        self.updateBatch()
-        return self.batch
+        vertexList = self.updateBatch(batch)
+        return vertexList
 
-    def changeColor(self,RGBValue):
+    def changeColor(self, batch, RGBValue):
         self.polygonColor = [RGBValue[0], RGBValue[1], RGBValue[2], 255]
 
-        self.updateBatch()
-        return self.batch
+        vertexList = self.updateBatch(batch)
+        return vertexList
 
-    def scalePolygon(self,scalingFactor):
+
+    def scalePolygon(self, batch, scalingFactor):
         for i in range(len(self.vertexArray)):
             # in order to scale the model, we can scale it with respect to the origin, ie bottom left of the screen window generated
             self.vertexArray[i] = scalingFactor * self.vertexArray[i]
 
-        self.updateBatch()
-        return self.batch
+        vertexList = self.updateBatch(batch)
+        return vertexList
 
-    def updateBatch(self):
-        self.batch = None
-        self.batch = pyglet.graphics.Batch()
-        self.batch.add(self.numVertices, pyglet.gl.GL_POLYGON, None, ('v2i',self.vertexArray), ('c4B',self.polygonColor*self.numVertices))
-
+    def updateBatch(self, batch):
+        vertexList = batch.add(self.numVertices, pyglet.gl.GL_POLYGON, None,('v2i', self.vertexArray), ('c4B', self.polygonColor*self.numVertices))
+        return vertexList
