@@ -115,7 +115,7 @@ elif objectToProject == "classTest":
     vertexList = objectDrawn.scalePolygon(batch,0.85)
     
 elif objectToProject == "cup":
-    rectangleWidth = 60
+    rectangleWidth = 120
     rectangleHeight = 500
 
     foregroundObjectShapes[0] = shapes.Rectangle(
