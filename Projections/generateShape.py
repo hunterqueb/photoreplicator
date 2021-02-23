@@ -116,12 +116,12 @@ elif objectToProject == "classTest":
     
 elif objectToProject == "cup":
     rectangleWidth = 60
-    rectangleHeight = 600
+    rectangleHeight = 500
 
     foregroundObjectShapes[0] = shapes.Rectangle(
-        width=rectangleWidth, height=rectangleHeight, x=screens[0].width//2-600, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
+        width=rectangleWidth, height=rectangleHeight, x=screens[0].width//2-500, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
     foregroundObjectShapes[1] = shapes.Rectangle(
-        width=rectangleHeight, height=rectangleWidth, x=screens[0].width//2-600, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
+        width=rectangleHeight, height=rectangleWidth, x=screens[0].width//2-500, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
     foregroundObjectShapes[2] = shapes.Rectangle(
         width=rectangleWidth, height=rectangleHeight, x=screens[0].width//2, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 

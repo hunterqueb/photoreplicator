@@ -59,7 +59,7 @@ class StepperMotors:
         t = threading.Thread(target=signal_user_input)
         t.start()
         self.PULSES_PER_SEC[0] = 2 * self.PULSES_PER_REV[0] * REVS / TRAVEL_TIME
-        self.PULSE_DELAY[0] = 0.5 * 1 / self.PULSES_PER_SEC[0]
+        self.PULSE_DELAY[0] =  1 / self.PULSES_PER_SEC[0]
 
         while no_input:
             GPIO.output(self.PUL[0], GPIO.HIGH)
