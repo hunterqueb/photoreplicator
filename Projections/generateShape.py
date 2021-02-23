@@ -167,6 +167,26 @@ def on_key_press(symbol, modifiers):
                     foregroundObjectShapes[i].color = wavelengthToRGB(colorToDraw, gamma)
         except:
             pass
+    if symbol == key.Z:
+        try:
+            for i in range(len(foregroundObjectShapes)):
+                if objectToProject == "rectangle":
+                    foregroundObjectShapes[i].width = 1.01*foregroundObjectShapes[i].width
+                    foregroundObjectShapes[i].height = 1.01*foregroundObjectShapes[i].height
+                elif objectToProject == "circle":
+                    foregroundObjectShapes[i].radius = 1.01 * foregroundObjectShapes[i].radius
+        except:
+            pass
+    if symbol == key.X:
+        try:
+            for i in range(len(foregroundObjectShapes)):
+                if objectToProject == "rectangle":
+                    foregroundObjectShapes[i].width = 0.99 * foregroundObjectShapes[i].width
+                    foregroundObjectShapes[i].height = 0.99 * foregroundObjectShapes[i].height
+                elif objectToProject == "circle":
+                    foregroundObjectShapes[i].radius = 0.99 * foregroundObjectShapes[i].radius
+        except:
+            pass
     if symbol == key.A:
         draw = 0
     if symbol == key.S:
