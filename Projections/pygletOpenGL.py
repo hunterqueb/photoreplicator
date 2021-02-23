@@ -3,9 +3,9 @@ import struct
 import os
 
 class createpoint:
-    def __init__(self,p,c=(1,0,0)):
+    def __init__(self,p):
         self.point_size=0.5
-        self.color=c
+        self.color=(1,0,0)
         self.x=p[0]
         self.y=p[1]
         self.z=p[2]
@@ -147,17 +147,17 @@ class draw_scene:
 
     #solid model with a light / shading
     def init_shading(self):
-        glShadeModel(GL_SMOOTH)
+        glShadeModel(GL_FLAT) # changed from GL_SMOOTH to FLAT
         glClearColor(0.0, 0.0, 0.0, 0.0)
         glClearDepth(1.0)
         glEnable(GL_DEPTH_TEST)
-        glShadeModel(GL_SMOOTH) 
+        glShadeModel(GL_FLAT) # changed from GL_SMOOTH to FLAT
         glDepthFunc(GL_LEQUAL)
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST)
       
         glEnable(GL_COLOR_MATERIAL)
-        glEnable(GL_LIGHTING)
-        glEnable(GL_LIGHT0)   
+        # glEnable(GL_LIGHTING)
+        # glEnable(GL_LIGHT0)   
         # glLight(GL_LIGHT0, GL_POSITION,  (0, 1, 1, 0))      
         glMatrixMode(GL_MODELVIEW)
       
