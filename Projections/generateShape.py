@@ -95,6 +95,35 @@ elif objectToProject == "polygonTest":
     vertexList.delete()
     # then you call the method to redraw the polygon
     vertexList = objectDrawn.movePolygon(batch, "right", 700)
+elif objectToProject == "classTest":
+    polygon = [screens[0].width/2 - 600, 0,
+                screens[0].width/2 - 600, screens[0].height,
+                screens[0].width/2 - 600 + 120, screens[0].height,
+                screens[0].width/2 - 600 + 120, 120,
+                screens[0].width/2, 120,
+                screens[0].width/2 + 600 - 120, 120,
+                screens[0].width/2 + 600 - 120, screens[0].height,
+                screens[0].width/2 + 600, screens[0].height,
+                screens[0].width/2 + 600, 0]
+    for i in range(len(polygon)):
+        polygon[i] = int(polygon[i])
+
+    polygonVertexNum = int(len(polygon)/2)
+    objectDrawn = pygletVertex(batch, polygonVertexNum, polygon)
+    vertexList = objectDrawn.initialDraw(batch)
+    vertexList.delete()
+    vertexList = objectDrawn.scalePolygon(batch,0.85)
+    
+elif objectToProject == "cup":
+    rectangleWidth = 60
+    rectangleHeight = 600
+
+    foregroundObjectShapes[0] = shapes.Rectangle(
+        width=rectangleWidth, height=rectangleHeight, x=screens[0].width//2-600, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
+    foregroundObjectShapes[1] = shapes.Rectangle(
+        width=rectangleHeight, height=rectangleWidth, x=screens[0].width//2-600, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
+    foregroundObjectShapes[2] = shapes.Rectangle(
+        width=rectangleWidth, height=rectangleHeight, x=screens[0].width//2, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 
 draw = 0
 
