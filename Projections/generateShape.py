@@ -63,8 +63,8 @@ NUM_OF_POLYGONS = 5
 foregroundObjectShapes = [None]*NUM_OF_POLYGONS
 
 if objectToProject == "rectangle":
-    rectangleWidth = 200
-    rectangleHeight = 600
+    rectangleWidth = 500
+    rectangleHeight = 120
     foregroundObjectShapes[0] = shapes.Rectangle(
         width=rectangleWidth, height=rectangleHeight, x=screens[0].width//2 - rectangleWidth, y=screens[0].height//2 - rectangleHeight, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "circle":
