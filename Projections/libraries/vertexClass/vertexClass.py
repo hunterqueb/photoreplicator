@@ -54,10 +54,11 @@ class pygletVertex:
         for i in range(len(self.vertexArray)):
             # in order to scale the model, we can scale it with respect to the origin, ie bottom left of the screen window generated
             self.vertexArray[i] = scalingFactor * self.vertexArray[i]
+            self.vertexArray[i] = int(self.vertexArray[i])
 
         vertexList = self.updateBatch(batch)
         return vertexList
 
     def updateBatch(self, batch):
-        vertexList = batch.add(self.numVertices, pyglet.gl.GL_POLYGON, None,('v2i', self.vertexArray), ('c4B', self.polygonColor*self.numVertices))
+        vertexList = batch.add(self.numVertices, pyglet.gl.GL_LINE_LOOP, None,('v2i', self.vertexArray), ('c4B', self.polygonColor*self.numVertices))
         return vertexList
