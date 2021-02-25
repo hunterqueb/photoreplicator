@@ -96,7 +96,7 @@ elif objectToProject == "polygonTest":
     # the idea is we can find test however we want.
     polygon = [100, 700, 300, 700, 300, 100, 100, 100]
 
-    objectDrawn = pygletVertex(batch, polygon)
+    objectDrawn = pygletVertex(batch, polygon, colorToDraw)
     # now draw the initial batches
     vertexList = objectDrawn.initialDraw(batch)
     
@@ -118,7 +118,7 @@ elif objectToProject == "classTest":
     for i in range(len(polygon)):
         polygon[i] = int(polygon[i])
 
-    objectDrawn = pygletVertex(batch, polygon)
+    objectDrawn = pygletVertex(batch, polygon, colorToDraw)
     vertexList = objectDrawn.initialDraw(batch)
     vertexList.delete()
     vertexList = objectDrawn.scalePolygon(batch,0.85)
