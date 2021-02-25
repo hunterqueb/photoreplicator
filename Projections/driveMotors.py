@@ -1,4 +1,4 @@
-from multipleMotorClass import StepperMotors
+from libraries.multipleMotorClass.multipleMotorClass import StepperMotors
 import sys
 
 VOLT = [2,21,20] # tester to see if pi pinout can handle lvl converting using GPIO pins
@@ -19,6 +19,6 @@ try:
     revs = float(revs1)
 
 except:
-    revs = 1
+    revs = 0.1666667
     print("defaulting to 1 revs/sec")
 stepper1.driveRotMotor(revs,1)
