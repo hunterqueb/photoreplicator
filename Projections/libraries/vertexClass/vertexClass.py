@@ -6,18 +6,14 @@ from libraries.wavelengthToRGB.wavelengthToRGB import wavelengthToRGB
 import sys
 
 
-
-
-
 class pygletVertex:
-    def __init__(self, batch, vertexArray):
+    def __init__(self, batch, vertexArray,wavelengthColor):
         self.numVertices = int(len(vertexArray)/2)
         self.vertexArray = vertexArray
         self.triangleArray = []
         self.vertexList = [None]
         
-        visibleForegroundWavelenth = 680
-        RGBValue = wavelengthToRGB(visibleForegroundWavelenth, 1)
+        RGBValue = wavelengthToRGB(wavelengthColor, 1)
         self.polygonColor = [RGBValue[0], RGBValue[1], RGBValue[2], 255]
 
     def initialDraw(self, batch):
@@ -25,7 +21,7 @@ class pygletVertex:
         self.vertexList = self.updateBatch(batch)
         return self.vertexList
 
-    def changeVertices(self, batch, numVertices, vertexArray):
+    def changeVertices(self, batch, vertexArray):
         self.numVertices = numVertices
         self.vertexArray = vertexArray
 
@@ -133,6 +129,6 @@ class pygletVertex:
 
     def updateBatch(self, batch):
         self.triangleArray = self.triangulate(self.vertexArray)
-        self.vertexList = None
+        self.vertexList = None # prevents memory leaks
         self.vertexList = batch.add(self.numVerticesTriangle, pyglet.gl.GL_TRIANGLES, None,('v2i', self.triangleArray), ('c4B', self.polygonColor*self.numVerticesTriangle))
         return self.vertexList
