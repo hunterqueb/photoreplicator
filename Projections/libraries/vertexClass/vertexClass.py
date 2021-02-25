@@ -10,8 +10,8 @@ import sys
 
 
 class pygletVertex:
-    def __init__(self, batch, numVertices, vertexArray):
-        self.numVertices = numVertices
+    def __init__(self, batch, vertexArray):
+        self.numVertices = int(len(vertexArray)/2)
         self.vertexArray = vertexArray
         self.triangleArray = []
         self.vertexList = [None]
@@ -121,7 +121,7 @@ class pygletVertex:
         gluTessEndPolygon(tess)
         gluDeleteTess(tess)
         flat_list_vertices = [item for sublist in vertices for item in sublist]
-        self.numVertices = int(len(flat_list_vertices)/2)
+        self.numVerticesTriangle = int(len(flat_list_vertices)/2)
 
 
         def cast_list(test_list, data_type):
@@ -134,5 +134,5 @@ class pygletVertex:
     def updateBatch(self, batch):
         self.triangleArray = self.triangulate(self.vertexArray)
         self.vertexList = None
-        self.vertexList = batch.add(self.numVertices, pyglet.gl.GL_TRIANGLES, None,('v2i', self.triangleArray), ('c4B', self.polygonColor*self.numVertices))
+        self.vertexList = batch.add(self.numVerticesTriangle, pyglet.gl.GL_TRIANGLES, None,('v2i', self.triangleArray), ('c4B', self.polygonColor*self.numVerticesTriangle))
         return self.vertexList
