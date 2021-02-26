@@ -1,5 +1,5 @@
 tic
-file = 'cylinder1.stl';
+file = 'cylinder2.stl';
 
 [vertices,faces,normals,name] = stlRead(file);
 stlPlot(vertices,faces,name);
@@ -11,7 +11,7 @@ yzIm = squeeze(sum(OUTPUTgrid,1));
 xzIm = squeeze(sum(OUTPUTgrid,2));
 xyIm = squeeze(sum(OUTPUTgrid,3));
 
-theta = 0:180;
+theta = 0:360;
 [R1,xp1] = radon(yzIm,theta);
 [R2,xp2] = radon(xzIm,theta);
 [R3,xp3] = radon(xyIm,theta);
@@ -83,3 +83,8 @@ title('xy Axis Image')
 % cross secion which can then be used to create a ct scan
 
 toc
+
+for i = length(R2(1,:))
+    xp2*cos(i) + xp2*sin(i);
+
+end
