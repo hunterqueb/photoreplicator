@@ -20,5 +20,5 @@ try:
 
 except:
     revs = 0.1666667
-    print("defaulting to 1 revs/sec")
+    print("defaulting to 0.166 revs/sec")
 stepper1.driveRotMotor(revs,1)
