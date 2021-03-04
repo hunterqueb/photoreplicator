@@ -73,7 +73,7 @@ class StepperMotors:
 
         for i in range(MOTOR_COUNT-1):
             self.PULSES_PER_SEC[i+1] = 2 * self.PULSES_PER_REV[i+1]  * LEAD_SCREW_TRAVEL_DISTANCE / (self.LEAD_DISTANCE * TRAVEL_TIME)
-            self.PULSE_DELAY[i+1] = 0.5 * 1 / self.PULSES_PER_SEC[i+1]
+            self.PULSE_DELAY[i+1] = 1 / self.PULSES_PER_SEC[i+1]
 
         motorStepTarget = [REVS, (self.LEAD_DISTANCE * TRAVEL_TIME),(self.LEAD_DISTANCE * TRAVEL_TIME)]
 
