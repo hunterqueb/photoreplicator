@@ -92,7 +92,7 @@ elif objectToProject == "pawn":
         width=rectangleHeight, height=rectangleWidth/2, x=screens[0].width//2 - rectangleWidth, y=screens[0].height//2 - rectangleHeight, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "polygonTest":
     rectangleWidth = 500
-    rectangleHeight = 120
+    rectangleHeight = 220
     startPos = 100
     # in order to draw a polygon, you need to follow this format
     # first define the objectDrawn object using the class, pass in the batch, vertex count, and vertices locations

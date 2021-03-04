@@ -3,7 +3,7 @@ from libraries.picamera.CameraModule import CameraModule
 width = 1920
 height = 1080
 framerate = 24
-rotation = 180
+rotation = 0
 
 CAM = CameraModule(width, height, framerate, rotation)
 
