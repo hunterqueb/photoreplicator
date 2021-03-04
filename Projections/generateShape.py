@@ -91,15 +91,15 @@ elif objectToProject == "pawn":
     foregroundObjectShapes[2] = shapes.Rectangle(
         width=rectangleHeight, height=rectangleWidth/2, x=screens[0].width//2 - rectangleWidth, y=screens[0].height//2 - rectangleHeight, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "polygonTest":
-    rectangleWidth = 500
-    rectangleHeight = 220
+    rectangleWidth = 220
+    rectangleHeight = 500
     startPos = 100
     # in order to draw a polygon, you need to follow this format
     # first define the objectDrawn object using the class, pass in the batch, vertex count, and vertices locations
     # the idea is we can find test however we want.
-    polygon = [startPos, startPos+rectangleWidth, 
-               startPos + rectangleHeight, startPos+rectangleWidth, 
-               startPos + rectangleHeight, startPos, 
+    polygon = [startPos, startPos+rectangleHeight, 
+               startPos + rectangleWidth, startPos+rectangleHeight, 
+               startPos + rectangleWidth, startPos, 
                startPos, startPos]
 
     objectDrawn = pygletVertex(batch, polygon, colorToDraw)
