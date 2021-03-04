@@ -332,9 +332,9 @@ def on_key_press(symbol, modifiers):
                 pass
             nextColorToDraw = visibleForegroundWavelenth
     if symbol == key.Q:
+        running == True
         t = threading.Thread(target=runCentralMotor)
         t.start()
-        running == True
     if symbol == key.W:
         running == False
             
