@@ -165,6 +165,7 @@ stepper1 = StepperMotors(VOLT,PUL,DIR,OPTO,PULSES_PER_REV,0,1)
 
 revs = 0.1666667
 
+global running
 running = False
 t = threading.Thread(target=runCentralMotor)
 t.start()
