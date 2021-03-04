@@ -166,7 +166,8 @@ stepper1 = StepperMotors(VOLT,PUL,DIR,OPTO,PULSES_PER_REV,0,1)
 revs = 0.1666667
 
 running = False
-
+t = threading.Thread(target=runCentralMotor)
+t.start()
 # # # EVENT HANDLING # # #
 
 # create event handlers that update with drawing the batch, im not sure how often this occurs
@@ -333,8 +334,6 @@ def on_key_press(symbol, modifiers):
             nextColorToDraw = visibleForegroundWavelenth
     if symbol == key.Q:
         running == True
-        t = threading.Thread(target=runCentralMotor)
-        t.start()
     if symbol == key.W:
         running == False
             
