@@ -294,7 +294,7 @@ def on_key_press(symbol, modifiers):
             else:
                 endTime = time.time()
                 print("Experiment over:")
-                print("--- %0.2f minutes ---" % ((endTime - startTime)//60))
+                print("--- %0.2f minutes and %0.4f seconds---" % (((endTime - startTime)//60),((endTime - startTime)%60)))
                 print("--- %0.4f seconds ---" % ((endTime - startTime)))
 
         else:
