@@ -28,6 +28,7 @@ except:
     objectToProject = "rectangle"
     print('object not specified, defaulting to rectangle')
 
+running = False
 
 def runCentralMotor():
     global running
@@ -171,8 +172,6 @@ stepper1 = StepperMotors(VOLT,PUL,DIR,OPTO,PULSES_PER_REV,0,1)
 
 revs = 0.1666667
 
-global running
-running = False
 t = threading.Thread(target=runCentralMotor)
 t.start()
 # # # EVENT HANDLING # # #
