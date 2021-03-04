@@ -1,7 +1,7 @@
 import pyglet
 from pyglet.window import key
 from pyglet import shapes
-
+import time
 import sys
 from libraries.wavelengthToRGB.wavelengthToRGB import wavelengthToRGB
 from libraries.vertexClass.vertexClass import pygletVertex
@@ -142,6 +142,8 @@ elif objectToProject == "cup":
 
 # this draw variable is used to tell the window what batch we want to draw. in this case, 0 indicates that we want the foreground object to be drawn immedietely
 draw = 0
+startTime = 0
+nextColorToDraw = foregroundWavelength
 
 # # # EVENT HANDLING # # #
 
@@ -162,8 +164,11 @@ def on_key_press(symbol, modifiers):
     # these gloab variables are used to modify the shapes drawn or location
     global draw
     global vertexList
+    global colorToDraw
+    global nextColorToDraw
+    global startTime
     # exit the window if either key is presses
-    if symbol == key.ENTER or symbol == key.ESCAPE:
+    if symbol == key.ESCAPE:
         pyglet.app.exit()
     
     # next sequence of keys are 1 and 2 which tell the window to edit the foreground objects color, 1 for red, 2 for violet
@@ -272,7 +277,38 @@ def on_key_press(symbol, modifiers):
                     foregroundObjectShapes[i].y -= 10
         except:
             pass
+    if symbol == key.ENTER:
+        if nextColorToDraw == visibleForegroundWavelenth:
+            try:
+                if foregroundObjectShapes[0] == None:
+                    vertexList.delete()
+                    vertexList = objectDrawn.changeColor(batch, wavelengthToRGB(nextColorToDraw, gamma))
+                else:
+                    for i in range(NUM_OF_POLYGONS):
+                        foregroundObjectShapes[i].color = wavelengthToRGB(nextColorToDraw, gamma)
+            except:
+                pass
+            nextColorToDraw = foregroundWavelength
+            if startTime == 0:
+                pass
+            else:
+                endTime = time.time()
+                print("--- %0.2f minutes ---" % ((endTime - startTime)//60))
+                print("--- %0.4f seconds ---" % ((endTime - startTime)))
 
+        else:
+            startTime = time.time()
+            try:
+                if foregroundObjectShapes[0] == None:
+                    vertexList.delete()
+                    vertexList = objectDrawn.changeColor(batch, wavelengthToRGB(nextColorToDraw, gamma))
+                else:
+                    for i in range(NUM_OF_POLYGONS):
+                        foregroundObjectShapes[i].color = wavelengthToRGB(nextColorToDraw, gamma)
+            except:
+                pass
+            nextColorToDraw = visibleForegroundWavelenth
+        
 # this function gets the screen to draw and is called whenever the batch gets updated to draw the screen 
 def drawBatch(screenToDraw):
     backgroundBatch.draw()
