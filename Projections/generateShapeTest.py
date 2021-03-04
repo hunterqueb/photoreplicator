@@ -29,6 +29,12 @@ except:
     print('object not specified, defaulting to rectangle')
 
 
+def runCentralMotor():
+    global running
+    while running:
+        stepper1.driveRotMotor(revs,1)
+    # thread exits here
+
 # get the displays and screen information
 displays = pyglet.canvas.get_display()
 screens = displays.get_screens()
@@ -353,11 +359,7 @@ def drawBatch(screenToDraw):
         deactivateResin.draw()
 
         
-def runCentralMotor():
-    global running
-    while running:
-        stepper1.driveRotMotor(revs,1)
-    # thread exits here
+
 
 
 # set visible after all initialization
