@@ -196,6 +196,7 @@ def on_key_press(symbol, modifiers):
     global colorToDraw
     global nextColorToDraw
     global startTime
+    global running
     # exit the window if either key is presses
     if symbol == key.ESCAPE:
         pyglet.app.exit()
