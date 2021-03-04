@@ -91,7 +91,7 @@ elif objectToProject == "pawn":
     foregroundObjectShapes[2] = shapes.Rectangle(
         width=rectangleHeight, height=rectangleWidth/2, x=screens[0].width//2 - rectangleWidth, y=screens[0].height//2 - rectangleHeight, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "polygonTest":
-    rectangleWidth = int(220*1.2)
+    rectangleWidth = int(300*1.2)
     rectangleHeight = int(500*1.2)
     startPos = 100
     # in order to draw a polygon, you need to follow this format
