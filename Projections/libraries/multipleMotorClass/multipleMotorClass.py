@@ -56,8 +56,8 @@ class StepperMotors:
             self.motorStep[i] = 0
 
     def driveRotMotor(self, REVS, TRAVEL_TIME):
-        t = threading.Thread(target=signal_user_input)
-        t.start()
+        # t = threading.Thread(target=signal_user_input)
+        # t.start()
         self.PULSES_PER_SEC[0] = 2 * self.PULSES_PER_REV[0] * REVS / TRAVEL_TIME
         self.PULSE_DELAY[0] =  1 / self.PULSES_PER_SEC[0]
 
