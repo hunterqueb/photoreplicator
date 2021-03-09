@@ -21,6 +21,19 @@ from libraries.multipleMotorClass.multipleMotorClass import StepperMotors
 # this is subject to change as a result of changing the focul lengths of the magnifying glasses
 
 # # # PREWINDOW SETUP # # #
+global running
+running = False
+global threadOff
+threadOff = False
+def runCentralMotor():
+    while not threadOff:
+        while running:
+            # print("Running")
+            stepper1.driveRotMotor(revs,1)
+    return
+            
+    # thread exits here
+
 # taking the input from the user, we need to know what shape to draw. if no input is added, then we default to a rectangle
 try:
     objectToProject = sys.argv[1]
@@ -28,13 +41,7 @@ except:
     objectToProject = "rectangle"
     print('object not specified, defaulting to rectangle')
 
-running = False
 
-def runCentralMotor():
-    global running
-    while running:
-        stepper1.driveRotMotor(revs,1)
-    # thread exits here
 
 # get the displays and screen information
 displays = pyglet.canvas.get_display()
@@ -172,7 +179,7 @@ stepper1 = StepperMotors(VOLT,PUL,DIR,OPTO,PULSES_PER_REV,0,1)
 
 revs = 0.1666667
 
-t = threading.Thread(target=runCentralMotor)
+t = threading.Thread(target=runCentralMotor,daemon = True)
 t.start()
 # # # EVENT HANDLING # # #
 
@@ -197,8 +204,11 @@ def on_key_press(symbol, modifiers):
     global nextColorToDraw
     global startTime
     global running
+    global threadOff
     # exit the window if either key is presses
     if symbol == key.ESCAPE:
+        threadOff = False
+        # t.join()
         pyglet.app.exit()
     
     # next sequence of keys are 1 and 2 which tell the window to edit the foreground objects color, 1 for red, 2 for violet
@@ -340,11 +350,9 @@ def on_key_press(symbol, modifiers):
                 pass
             nextColorToDraw = visibleForegroundWavelenth
     if symbol == key.Q:
-        running == True
+        running = True
     if symbol == key.W:
-        running == False
-            
-
+        running = False
 
 
         
