@@ -7,7 +7,7 @@ import threading
 
 from libraries.wavelengthToRGB.wavelengthToRGB import wavelengthToRGB
 from libraries.vertexClass.vertexClass import pygletVertex
-from libraries.multipleMotorClass.multipleMotorClass import StepperMotors
+from libraries.multipleMotorClass.multipleMotorClassTest import StepperMotors
 
 # TODO
 # fix pawn shape
