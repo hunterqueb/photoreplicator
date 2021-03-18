@@ -39,10 +39,11 @@ class StepperMotors:
         print("Pulse Low")
         sleep(self.PULSE_DELAY[0])
         print("end")
-        # if self.currentDirection[0] == 0:
-        #     motorStep[0] += 1
-        # else:
-        #     motorStep[0] -= 1
+        if self.currentDirection[0] == 0:
+            motorStep[0] = motorStep[0] + 1
+        else:
+            motorStep[0] = motorStep[0] - 1
+
 
 
     def driveMotors(self, REVS, LEAD_SCREW_TRAVEL_DISTANCE, TRAVEL_TIME):
