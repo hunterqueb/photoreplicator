@@ -353,6 +353,7 @@ def on_key_press(symbol, modifiers):
         running = True
     if symbol == key.W:
         running = False
+        print(stepper1.motorStep[0])
 
 
         
