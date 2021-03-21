@@ -26,7 +26,7 @@ class StepperMotors:
         self.PULSE_DELAY = [0, 0, 0]
         self.currentDirection = [0, 1, 1]
         
-        for i in range(MOTOR_COUNT):
+        for i in range(self.MOTOR_COUNT):
             self.motorStep[i] = 0
 
 
@@ -40,45 +40,44 @@ class StepperMotors:
         sleep(self.PULSE_DELAY[0])
         print("end")
         if self.currentDirection[0] == 0:
-            motorStep[0] = motorStep[0] + 1
+            self.motorStep[0] += 1
         else:
-            motorStep[0] = motorStep[0] - 1
+            self.motorStep[0] -= 1
 
 
 
-    def driveMotors(self, REVS, LEAD_SCREW_TRAVEL_DISTANCE, TRAVEL_TIME):
-        self.PULSES_PER_SEC[0] = 2 * \
-            self.PULSES_PER_REV[0] * REVS / TRAVEL_TIME
-        self.PULSE_DELAY[0] = 0.5 * 1 / self.PULSES_PER_SEC[0]
+    def driveLeadMotors(self, LEAD_SCREW_TRAVEL_DISTANCE, TRAVEL_TIME):
+        # LEAD_SCREW_TRAVEL_DISTANCE IN MM
+        # TRAVEL_TIME IN SECONDS
 
-        for i in range(MOTOR_COUNT-1):
-            self.PULSES_PER_SEC[i+1] = 2 * self.PULSES_PER_REV[i+1] * \
-                LEAD_SCREW_TRAVEL_DISTANCE / (self.LEAD_DISTANCE * TRAVEL_TIME)
+        for i in range(self.MOTOR_COUNT-1):
+            self.PULSES_PER_SEC[i+1] = 2 * self.PULSES_PER_REV[i+1] * LEAD_SCREW_TRAVEL_DISTANCE / (self.LEAD_DISTANCE * TRAVEL_TIME)
             self.PULSE_DELAY[i+1] = 1 / self.PULSES_PER_SEC[i+1]
 
-        motorStepTarget = [
-            REVS, (self.LEAD_DISTANCE * TRAVEL_TIME), (self.LEAD_DISTANCE * TRAVEL_TIME)]
+        motorStepTarget = [(self.LEAD_DISTANCE * TRAVEL_TIME), (self.LEAD_DISTANCE * TRAVEL_TIME)]
 
-        for i in range(MOTOR_COUNT):
+        for i in range(self.MOTOR_COUNT-1):
             motorStepTarget[i] = 200 * motorStepTarget[i]
-            if self.currentDirection[i] == 1:
-                motorStepTarget[i] = self.motorStep[i] - motorStepTarget[i]
 
-        while self.motorStep[2] < motorStepTarget[2]:
-            
-            if self.motorStep[1] < motorStepTarget[1]:
-                
-                self.motorStep[1] += 1
+            if self.motorStep[i+1] < motorStepTarget[i]:
+                print("Pulse High")
+                sleep(self.PULSE_DELAY[i+1])
+                print("Pulse Low")
+                sleep(self.PULSE_DELAY[i+1])
+                print("end")
 
-            if self.motorStep[2] < motorStepTarget[2]:
-                
-                self.motorStep[2] += 1
+                if self.currentDirection[i+1] == 0:
+                    self.motorStep[i+1] += 1
+                else:
+                    self.motorStep[i+1] -= 1
 
     def changeLeadDirections(self, DIRECTION):
-        for i in range(2):
+        for i in range(self.MOTOR_COUNT-1):
             if DIRECTION == "UP":
+                self.currentDirection[i+1] = 1
                 pass
             elif DIRECTION == "DOWN":
+                self.currentDirection[i+1] = 0
                 pass
             else:
                 raise Exception()
