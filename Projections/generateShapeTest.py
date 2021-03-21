@@ -22,17 +22,28 @@ from libraries.multipleMotorClass.multipleMotorClassTest import StepperMotors
 
 # # # PREWINDOW SETUP # # #
 global running
+global leadRunning
 running = False
-global threadOff
-threadOff = False
+leadRunning = False
+global thread1Off
+global thread2Off
+thread1Off = False
+thread2Off = False
 def runCentralMotor():
-    while not threadOff:
+    while not thread1Off:
         while running:
             # print("Running")
             stepper1.driveRotMotor(revs,1)
+    return  
+    # thread 1 exits here
+
+def runLeadMotors():
+    while not thread2Off:
+        while leadRunning:
+            stepper1.driveLeadMotors(1,1)
+            pass
     return
-            
-    # thread exits here
+    # thread 2 exits here
 
 # taking the input from the user, we need to know what shape to draw. if no input is added, then we default to a rectangle
 try:
@@ -179,8 +190,11 @@ stepper1 = StepperMotors(VOLT,PUL,DIR,OPTO,PULSES_PER_REV,0,1)
 
 revs = 0.1666667
 
-t = threading.Thread(target=runCentralMotor,daemon = True)
-t.start()
+t1 = threading.Thread(target=runCentralMotor,daemon = True)
+t1.start()
+
+t2 = threading.Thread(target=runLeadMotors,daemon = True)
+t2.start()
 # # # EVENT HANDLING # # #
 
 # create event handlers that update with drawing the batch, im not sure how often this occurs
@@ -204,10 +218,13 @@ def on_key_press(symbol, modifiers):
     global nextColorToDraw
     global startTime
     global running
-    global threadOff
+    global leadRunning
+    global thread1Off
+    global thread2Off
     # exit the window if either key is presses
     if symbol == key.ESCAPE:
-        threadOff = False
+        thread1Off = False
+        thread2Off = False
         # t.join()
         pyglet.app.exit()
     
@@ -353,7 +370,10 @@ def on_key_press(symbol, modifiers):
         running = True
     if symbol == key.W:
         running = False
-        print(stepper1.motorStep[0])
+    if symbol == key.E:
+        leadRunning = True
+    if symbol == key.R:
+        leadRunning = False
 
 
         
