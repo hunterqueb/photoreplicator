@@ -67,7 +67,7 @@ class StepperMotors:
         sleep(self.PULSE_DELAY[0])
         print("end")
 
-    def driveMotors(self, REVS, LEAD_SCREW_TRAVEL_DISTANCE, TRAVEL_TIME):
+    def driveLeadMotors(self, LEAD_SCREW_TRAVEL_DISTANCE, TRAVEL_TIME):
         for i in range(self.MOTOR_COUNT-1):
             self.PULSES_PER_SEC[i+1] = 2 * self.PULSES_PER_REV[i+1] * LEAD_SCREW_TRAVEL_DISTANCE / (self.LEAD_DISTANCE * TRAVEL_TIME)
             self.PULSE_DELAY[i+1] = 1 / self.PULSES_PER_SEC[i+1]
