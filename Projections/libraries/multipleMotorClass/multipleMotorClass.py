@@ -65,7 +65,7 @@ class StepperMotors:
         sleep(self.PULSE_DELAY[0])
         GPIO.output(self.PUL[0], GPIO.LOW)
         sleep(self.PULSE_DELAY[0])
-        print("end")
+        # print("end")
 
     def driveLeadMotors(self, LEAD_SCREW_TRAVEL_DISTANCE, TRAVEL_TIME):
         for i in range(self.MOTOR_COUNT-1):
@@ -81,7 +81,7 @@ class StepperMotors:
                     # print("lead" + str(i))
                     GPIO.output(self.PUL[i+1], GPIO.HIGH)
                     sleep(self.PULSE_DELAY[i+1])
-                    print("Pulse Low")
+                    # print("Pulse Low")
                     GPIO.output(self.PUL[i+1], GPIO.LOW)
                     # print("end")
 
