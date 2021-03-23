@@ -83,6 +83,9 @@ class StepperMotors:
                     sleep(self.PULSE_DELAY[i+1])
                     # print("Pulse Low")
                     GPIO.output(self.PUL[i+1], GPIO.LOW)
+                    sleep(self.PULSE_DELAY[i+1])
+
+                    print("driving lead motor " + str(i+1))
                     # print("end")
 
                     self.motorStep[i+1] += 1
