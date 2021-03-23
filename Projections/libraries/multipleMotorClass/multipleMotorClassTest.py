@@ -60,16 +60,14 @@ class StepperMotors:
             motorStepTarget[i] = 200 * motorStepTarget[i]
 
             if self.motorStep[i+1] < motorStepTarget[i]:
+                # print("lead" + str(i))
                 print("Pulse High")
                 sleep(self.PULSE_DELAY[i+1])
                 print("Pulse Low")
                 sleep(self.PULSE_DELAY[i+1])
-                print("end")
+                # print("end")
 
-                if self.currentDirection[i+1] == 0:
-                    self.motorStep[i+1] += 1
-                else:
-                    self.motorStep[i+1] -= 1
+                self.motorStep[i+1] += 1
 
     def changeLeadDirections(self, DIRECTION):
         for i in range(self.MOTOR_COUNT-1):

@@ -40,8 +40,8 @@ def runCentralMotor():
 def runLeadMotors():
     while not thread2Off:
         while leadRunning:
+            # print("lead running")
             stepper1.driveLeadMotors(1,1)
-            pass
     return
     # thread 2 exits here
 
@@ -186,7 +186,7 @@ PULSES_PER_REV_MOTOR3 = 400
 
 PULSES_PER_REV = [PULSES_PER_REV_MOTOR1,PULSES_PER_REV_MOTOR2,PULSES_PER_REV_MOTOR3]
 
-stepper1 = StepperMotors(VOLT,PUL,DIR,OPTO,PULSES_PER_REV,0,1)
+stepper1 = StepperMotors(VOLT,PUL,DIR,OPTO,PULSES_PER_REV,0,3)
 
 revs = 0.1666667
 
