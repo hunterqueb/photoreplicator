@@ -24,7 +24,7 @@ class StepperMotors:
         self.motorStep = [0, 0, 0]
         self.PULSES_PER_SEC = [0, 0, 0]
         self.PULSE_DELAY = [0, 0, 0]
-        self.currentDirection = [0, 1, 1]
+        self.currentDirection = [0, 0, 0]
         
         for i in range(self.MOTOR_COUNT):
             self.motorStep[i] = 0
@@ -39,10 +39,7 @@ class StepperMotors:
         print("Pulse Low")
         sleep(self.PULSE_DELAY[0])
         print("end")
-        if self.currentDirection[0] == 0:
-            self.motorStep[0] += 1
-        else:
-            self.motorStep[0] -= 1
+        self.motorStep[0] += 1
 
 
 
