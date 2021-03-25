@@ -12,13 +12,13 @@ PULSES_PER_REV_MOTOR3 = 400
 
 PULSES_PER_REV = [PULSES_PER_REV_MOTOR1,PULSES_PER_REV_MOTOR2,PULSES_PER_REV_MOTOR3]
 
-stepper1 = StepperMotors(VOLT,PUL,DIR,OPTO,PULSES_PER_REV,0,1)
+stepper1 = StepperMotors(VOLT,PUL,DIR,OPTO,PULSES_PER_REV,0,3)
 try:
     revs1 = sys.argv[1]
 
     revs = float(revs1)
-
 except:
     revs = 0.1666667
-    print("defaulting to 0.166 revs/sec")
-stepper1.driveRotMotor(revs,1)
+    print("defaulting middle motor to 0.166 revs/sec")
+# stepper1.driveRotMotor(revs,1)
+stepper1.driveLeadMotors(1,1)
