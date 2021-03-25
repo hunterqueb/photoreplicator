@@ -21,7 +21,7 @@ try:
 except:
     revs = 0.1666667
     print("defaulting middle motor to 0.166 revs/sec")
-# stepper1.driveRotMotor(revs,1)
+stepper1.driveRotMotor(revs,1)
 
 startTime = time.time()
 currentTime = time.time()
