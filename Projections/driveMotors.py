@@ -1,5 +1,6 @@
 from libraries.multipleMotorClass.multipleMotorClass import StepperMotors
 import sys
+import time
 
 VOLT = [2,21,20] # tester to see if pi pinout can handle lvl converting using GPIO pins
 PUL = [17,26,16]  # Stepper Drive Pulses
@@ -21,4 +22,9 @@ except:
     revs = 0.1666667
     print("defaulting middle motor to 0.166 revs/sec")
 # stepper1.driveRotMotor(revs,1)
-stepper1.driveLeadMotors(1,1)
+
+startTime = time.time()
+currentTime = time.time()
+while currentTime - startTime < 10:
+    stepper1.driveLeadMotors(1,1)
+    currentTime = time.time()
