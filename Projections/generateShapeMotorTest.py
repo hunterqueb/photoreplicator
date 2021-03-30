@@ -168,7 +168,15 @@ elif objectToProject == "cup":
         width=rectangleHeight, height=rectangleWidth, x=screens[0].width//2-500, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
     foregroundObjectShapes[2] = shapes.Rectangle(
         width=rectangleWidth, height=rectangleHeight, x=screens[0].width//2, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
+elif objectToProject == "cone":
+    coneHeight = 100
+    coneWidth = 50
+    polygon = [screens[0].width/2 - 600, 0,
+                screens[0].width/2 - 600 + coneWidth, 0,
+                screens[0].width/2 - 600 + coneWidth//2, coneHeight]
 
+    objectDrawn = pygletVertex(batch, polygon, colorToDraw)
+    vertexList = objectDrawn.initialDraw(batch)
 # this draw variable is used to tell the window what batch we want to draw. in this case, 0 indicates that we want the foreground object to be drawn immedietely
 draw = 0
 startTime = 0
