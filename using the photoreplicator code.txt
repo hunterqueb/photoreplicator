@@ -1,0 +1,58 @@
+when you start up the pi you have to nagivate to the folder containing the files for projecting.
+
+first, you gotta open the terminal. press ctrl+alt+t
+
+then to navigate to the folder that has the python scripts type
+
+cd Desktop\photoreplicator\Projections
+
+now to start the program you type
+
+python3 generateShapeMotorTest.py SHAPE
+
+the shape is determined by whatever shape you type to replace SHAPE
+The available shapes are pretty confusing, but they are as follows:
+
+rectangle - draws a rectangle
+circle - draws a circle
+pawn - draws a pawn
+polygonTest - draws a rectangle -- this is the one I use whenever I draw a rectangle to the screen
+cup - draws a thin walled cup
+classTest - draws a thick walled cup
+cone - draws a triangle to print a cone
+
+so if you wanted to print a sphere type
+
+python3 generateShapeMotorTest.py circle
+
+
+once the program opens the controls are as follows:
+
+MOTOR CONTROL
+Q - turns on the motor to rotate the central motor
+W - turns off the motor to rotate the central motor
+E - (DONT USE) turns on the motors to rotate the lead screw motors 
+R - turns off the motors to rotate the lead screw motors 
+
+SHAPE CONTROL
+Z           - increases the size of the object
+X           - decreases the size of the object
+LEFT ARROW  - moves the object to the left
+RIGHT ARROW - moves the object to the right
+UP ARROW    - moves the object up
+DOWN ARROW  - moves the object down
+
+STARTING EXPERIMENTS
+ENTER   - starts the resin hardening
+        - press once to begin the experiement. this changes the object color from red to purple
+        - press again to end the experiment. this deactivates the resin and shows the time elapsed
+        - youll have to turn off the motor rotation yourself
+
+BACKDROP CONTROL (these are pretty outdated and no longer needed)
+A - draws foreground object (on by default)
+S - draws nothing but a purple background -- used for resin preheating
+D - draws nothing but a yellow background -- used for completely disabling all foreground objects 
+
+CHANGING SHAPE COLOR
+1 - changes the foreground objects color to red
+2 - changes the foreground objects color to purple
