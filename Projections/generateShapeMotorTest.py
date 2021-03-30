@@ -140,7 +140,7 @@ elif objectToProject == "polygonTest":
     # then you call the method to redraw the polygon
     vertexList = objectDrawn.movePolygon(batch, "right", 700)
 elif objectToProject == "classTest":
-    wallThickness = 200
+    wallThickness = 240
     polygon = [screens[0].width/2 - 600, 0,
                 screens[0].width/2 - 600, screens[0].height,
                 screens[0].width/2 - 600 + wallThickness, screens[0].height,
