@@ -59,7 +59,7 @@ displays = pyglet.canvas.get_display()
 screens = displays.get_screens()
 
 # instance the window object for each display
-window1 = pyglet.window.Window(1920, 1080, fullscreen=False, screen=screens[0], visible=False)
+window1 = pyglet.window.Window(1920, 1080, fullscreen=False, screen=screens[0], visible=True)
 # window2 = pyglet.window.Window(1920, 1080, fullscreen=False, screen=screens[1], visible=False)
 
 # # # PREDRAWING SETUP # # #
