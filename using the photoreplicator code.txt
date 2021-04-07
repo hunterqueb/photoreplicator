@@ -8,7 +8,7 @@ cd Desktop\photoreplicator\Projections
 
 now to start the program you type
 
-python3 generateShapeMotorTest.py SHAPE
+python3 generateShape.py SHAPE
 
 the shape is determined by whatever shape you type to replace SHAPE
 The available shapes are pretty confusing, but they are as follows:
@@ -16,9 +16,9 @@ The available shapes are pretty confusing, but they are as follows:
 rectangle - draws a rectangle
 circle - draws a circle
 pawn - draws a pawn
-polygonTest - draws a rectangle -- this is the one I use whenever I draw a rectangle to the screen
+polygonRect - draws a rectangle -- this is the one I use whenever I draw a rectangle to the screen
 cup - draws a thin walled cup
-classTest - draws a thick walled cup
+cupClass - draws a thick walled cup
 cone - draws a triangle to print a cone
 
 so if you wanted to print a sphere type
