@@ -1,0 +1,7 @@
+sudo raspi-config % enable camera
+
+sudo apt upgrade  % update and install the newest version of the libraries
+
+restart terminal
+
+run python3
