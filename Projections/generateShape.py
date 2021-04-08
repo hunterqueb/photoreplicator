@@ -268,29 +268,43 @@ def on_key_press(symbol, modifiers):
         # increases the size of the objects, however, with the pyglet framework, when complex shapes are used, we can get strange results so it is disabled for those shapes
         # however, it is enabled for the custom vertex class
         try:
-            for i in range(len(foregroundObjectShapes)):
-                if objectToProject == "rectangle":
-                    foregroundObjectShapes[i].width = 1.01*foregroundObjectShapes[i].width
-                    foregroundObjectShapes[i].height = 1.01*foregroundObjectShapes[i].height
-                elif objectToProject == "circle":
-                    foregroundObjectShapes[i].radius = 1.01 * foregroundObjectShapes[i].radius
-                else:
-                    vertexList.delete()
-                    vertexList = objectDrawn.scalePolygon(batch, 1.01)
+            if objectToProject == "pawn":
+                foregroundObjectShapes[0].width = 1.01*foregroundObjectShapes[i].width
+                foregroundObjectShapes[0].height = 1.01*foregroundObjectShapes[i].height
+                foregroundObjectShapes[1].radius = 1.01 * foregroundObjectShapes[i].radius
+                foregroundObjectShapes[2].width = 1.01*foregroundObjectShapes[i].width
+                foregroundObjectShapes[2].height = 1.01*foregroundObjectShapes[i].height
+            else:
+                for i in range(len(foregroundObjectShapes)):
+                    if objectToProject == "rectangle":
+                        foregroundObjectShapes[i].width = 1.01*foregroundObjectShapes[i].width
+                        foregroundObjectShapes[i].height = 1.01*foregroundObjectShapes[i].height
+                    elif objectToProject == "circle":
+                        foregroundObjectShapes[i].radius = 1.01 * foregroundObjectShapes[i].radius
+                    else:
+                        vertexList.delete()
+                        vertexList = objectDrawn.scalePolygon(batch, 1.01)
         except:
             pass
     if symbol == key.X:
         # decreases the size of the objects, see note above about complex shapes
         try:
-            for i in range(len(foregroundObjectShapes)):
-                if objectToProject == "rectangle":
-                    foregroundObjectShapes[i].width = 0.99 * foregroundObjectShapes[i].width
-                    foregroundObjectShapes[i].height = 0.99 * foregroundObjectShapes[i].height
-                elif objectToProject == "circle":
-                    foregroundObjectShapes[i].radius = 0.99 * foregroundObjectShapes[i].radius
-                else:
-                    vertexList.delete()
-                    vertexList = objectDrawn.scalePolygon(batch, 0.99)
+            if objectToProject == "pawn":
+                foregroundObjectShapes[0].width = 0.99 *foregroundObjectShapes[i].width
+                foregroundObjectShapes[0].height = 0.99 *foregroundObjectShapes[i].height
+                foregroundObjectShapes[1].radius = 0.99 * foregroundObjectShapes[i].radius
+                foregroundObjectShapes[2].width = 0.99 *foregroundObjectShapes[i].width
+                foregroundObjectShapes[2].height = 0.99 *foregroundObjectShapes[i].height
+            else:
+                for i in range(len(foregroundObjectShapes)):
+                    if objectToProject == "rectangle":
+                        foregroundObjectShapes[i].width = 0.99 * foregroundObjectShapes[i].width
+                        foregroundObjectShapes[i].height = 0.99 * foregroundObjectShapes[i].height
+                    elif objectToProject == "circle":
+                        foregroundObjectShapes[i].radius = 0.99 * foregroundObjectShapes[i].radius
+                    else:
+                        vertexList.delete()
+                        vertexList = objectDrawn.scalePolygon(batch, 0.99)
         except:
             pass
     # next sequence of keys are A, S and D which tell the window which batch/background to draw
