@@ -170,7 +170,7 @@ elif objectToProject == "cup":
         width=rectangleWidth, height=rectangleHeight, x=screens[0].width//2, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "cone":
     coneHeight = 100
-    coneWidth = coneWidth/2
+    coneWidth = coneHeight/2
     polygon = [screens[0].width/2 - 600, 0,
                 screens[0].width/2 - 600 + coneWidth, 0,
                 screens[0].width/2 - 600 + coneWidth//2, coneHeight]
