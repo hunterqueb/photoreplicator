@@ -177,6 +177,17 @@ elif objectToProject == "cone":
 
     objectDrawn = pygletVertex(batch, polygon, colorToDraw)
     vertexList = objectDrawn.initialDraw(batch)
+    
+elif objectToProject == "snowmanBody":
+    circleRadius = 175
+    circleRadius2 = 150
+
+    squareDim = circleRadius*2
+    rectangleWidth = squareDim * 1.25
+    rectangleHeight = squareDim/(2*3)
+    foregroundObjectShapes[0] = shapes.Circle(x=screens[0].width//2, y=screens[0].height//2, radius=circleRadius, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
+    foregroundObjectShapes[1] = shapes.Circle(x=screens[0].width//2, y=screens[0].height//2+(2*circleRadius)-100, radius=circleRadius2, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
+
 # this draw variable is used to tell the window what batch we want to draw. in this case, 0 indicates that we want the foreground object to be drawn immedietely
 draw = 0
 startTime = 0
