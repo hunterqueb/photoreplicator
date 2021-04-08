@@ -269,11 +269,11 @@ def on_key_press(symbol, modifiers):
         # however, it is enabled for the custom vertex class
         try:
             if objectToProject == "pawn":
-                foregroundObjectShapes[0].width = 1.01*foregroundObjectShapes[i].width
-                foregroundObjectShapes[0].height = 1.01*foregroundObjectShapes[i].height
-                foregroundObjectShapes[1].radius = 1.01 * foregroundObjectShapes[i].radius
-                foregroundObjectShapes[2].width = 1.01*foregroundObjectShapes[i].width
-                foregroundObjectShapes[2].height = 1.01*foregroundObjectShapes[i].height
+                foregroundObjectShapes[0].width = 1.01*foregroundObjectShapes[0].width
+                foregroundObjectShapes[0].height = 1.01*foregroundObjectShapes[0].height
+                foregroundObjectShapes[1].radius = 1.01 * foregroundObjectShapes[1].radius
+                foregroundObjectShapes[2].width = 1.01*foregroundObjectShapes[2].width
+                foregroundObjectShapes[2].height = 1.01*foregroundObjectShapes[2].height
             else:
                 for i in range(len(foregroundObjectShapes)):
                     if objectToProject == "rectangle":
@@ -290,11 +290,11 @@ def on_key_press(symbol, modifiers):
         # decreases the size of the objects, see note above about complex shapes
         try:
             if objectToProject == "pawn":
-                foregroundObjectShapes[0].width = 0.99 *foregroundObjectShapes[i].width
-                foregroundObjectShapes[0].height = 0.99 *foregroundObjectShapes[i].height
-                foregroundObjectShapes[1].radius = 0.99 * foregroundObjectShapes[i].radius
-                foregroundObjectShapes[2].width = 0.99 *foregroundObjectShapes[i].width
-                foregroundObjectShapes[2].height = 0.99 *foregroundObjectShapes[i].height
+                foregroundObjectShapes[0].width = 0.99 *foregroundObjectShapes[0].width
+                foregroundObjectShapes[0].height = 0.99 *foregroundObjectShapes[0].height
+                foregroundObjectShapes[1].radius = 0.99 * foregroundObjectShapes[1].radius
+                foregroundObjectShapes[2].width = 0.99 *foregroundObjectShapes[2].width
+                foregroundObjectShapes[2].height = 0.99 *foregroundObjectShapes[2].height
             else:
                 for i in range(len(foregroundObjectShapes)):
                     if objectToProject == "rectangle":
