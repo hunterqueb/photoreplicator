@@ -209,6 +209,10 @@ elif objectToProject == "SD":
                 screens[0].width/2+width, screens[0].height/2,+height,
                 screens[0].width/2+(width - innerWidth)//2+(width - innerWidth), screens[0].height/2+height//2,
                 screens[0].width/2+300, screens[0].height/2]
+                
+    objectDrawn = pygletVertex(batch, polygon, colorToDraw)
+    vertexList = objectDrawn.initialDraw(batch)
+
 
 # this draw variable is used to tell the window what batch we want to draw. in this case, 0 indicates that we want the foreground object to be drawn immedietely
 draw = 0
