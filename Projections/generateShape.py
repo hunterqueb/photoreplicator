@@ -198,6 +198,18 @@ elif objectToProject == "snowmanBody":
     foregroundObjectShapes[0] = shapes.Circle(x=screens[0].width//2, y=screens[0].height//2, radius=circleRadius, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
     foregroundObjectShapes[1] = shapes.Circle(x=screens[0].width//2, y=screens[0].height//2+(2*circleRadius)-100, radius=circleRadius2, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 
+elif objectToProject == "SD":
+    width = 300
+    height = 400
+    innerWidth = 225
+
+    polygon = [screens[0].width/2, screens[0].height/2, 
+                screens[0].width/2+(width - innerWidth)//2, screens[0].height/2+height//2,
+                screens[0].width/2, screens[0].height/2+height,
+                screens[0].width/2+width, screens[0].height/2,+height,
+                screens[0].width/2+(width - innerWidth)//2+(width - innerWidth), screens[0].height/2+height//2,
+                screens[0].width/2+300, screens[0].height/2]
+
 # this draw variable is used to tell the window what batch we want to draw. in this case, 0 indicates that we want the foreground object to be drawn immedietely
 draw = 0
 startTime = 0
