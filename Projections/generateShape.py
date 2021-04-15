@@ -179,7 +179,7 @@ elif objectToProject == "cup":
     foregroundObjectShapes[2] = shapes.Rectangle(
         width=rectangleWidth, height=rectangleHeight, x=screens[0].width//2, y=screens[0].height//2-400, color=wavelengthToRGB(colorToDraw, gamma), batch=batch)
 elif objectToProject == "cone":
-    coneHeight = 100
+    coneHeight = 500*1.2
     coneWidth = coneHeight/2
     polygon = [screens[0].width/2 - 600, 0,
                 screens[0].width/2 - 600 + coneWidth, 0,
@@ -204,12 +204,12 @@ elif objectToProject == "SD":
     innerWidth = 225
 
     polygon = [screens[0].width/2, screens[0].height/2, 
-                screens[0].width/2+(width - innerWidth)//2, screens[0].height/2+height//2,
-                screens[0].width/2, screens[0].height/2+height,
-                screens[0].width/2+width, screens[0].height/2,+height,
+                screens[0].width/2+(width - innerWidth)//2, (screens[0].height/2)+height//2,
+                screens[0].width/2, (screens[0].height/2)+height,
+                screens[0].width/2+width,( screens[0].height/2),+height,
                 screens[0].width/2+(width - innerWidth)//2+(width - innerWidth), screens[0].height/2+height//2,
                 screens[0].width/2+300, screens[0].height/2]
-                
+
     objectDrawn = pygletVertex(batch, polygon, colorToDraw)
     vertexList = objectDrawn.initialDraw(batch)
 
